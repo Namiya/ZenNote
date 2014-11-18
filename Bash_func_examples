@@ -9,8 +9,14 @@ eval y='$'$x
 echo $y
 
 #"shift" function
-
 echo $@
 shift
 echo $@
+
+#read key/value pair
+while read key val; do
+    echo "$key"
+    echo "$val"
+    break
+done
 
