@@ -1,7 +1,16 @@
 #!/bin/bash
+
+#"eval" function
 foo=10 x=foo
 y='$'$x
 echo $x
 echo $y
 eval y='$'$x
 echo $y
+
+#"shift" function
+
+echo $@
+shift
+echo $@
+
