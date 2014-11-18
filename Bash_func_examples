@@ -20,3 +20,9 @@ while read key val; do
     break
 done
 
+#read key/value pair from a file "data"
+while read key val; do
+    echo $key
+    echo $val
+done < "./data"
+
