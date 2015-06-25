@@ -6,12 +6,9 @@ nmap -A -sC : active the Nmap Scripting engine
 
 
 MAC Flood
-Switch is flooded with MAC address and turned into a hub.
-Content Address Memory is overflood
+Content Address Memory (CAM) is overflood
 Macof can achieve it.
-Mitigating it by configure port security. Allow MAC address to be specified on a particular port or specify the max number of addresses the switchport can learn.
-IP Fragment
-Dumpster Diving
+Mitigating: port security. Allow MAC address to be specified on a particular port or specify the max number of addresses the switchport can learn.
 
 SPAN port: send a copy of all frames from one port in switch to another. Also called port mirroring.
 
@@ -444,13 +441,25 @@ The man trap, designed as a pure physical access control, provides additional co
 
 
 Chapter 11
-Security assessments can be one of two types: a security audit (vulnerability assess- ment) or a penetration test. The security audit scans and tests a system or network for existing vulnerabilities but does not intentionally exploit any of them. This assessment is designed to uncover potential security holes in the system and report them to the client for their action. It does not fix or patch vulnerabilities, nor does it exploit them. It only points them out for the client’s benefit.
-A penetration test actively seeks to exploit vulnerabilities encountered on target systems or networks. This shows the potential consequences of a hacker breaking in through unpatched vulnerabilities. Penetration tests are carried out by highly skilled individuals according to an agreement signed before testing begins. This agreement spells out the limitations, constraints, and liabilities between the organization and the penetration test team.
-Penetration tests consist of two types of assessment: external and internal. An external assessment analyzes publicly available information and conducts network scanning, enumeration, and testing from the network perimeter—usually from the Internet. An internal assessment is performed from within the organization, from various network access points.
-Black-box testing occurs when the attacker has no prior knowledge of the infrastruc- ture at all (your scope is defined, and you’ll be provided the minimal amount of information required). This testing takes the longest to accomplish and simulates a true outside hacker. White-box testing simulates an internal user who has complete knowledge of the company’s infrastructure. Gray-box testing provides limited informa- tion on the infrastructure. Sometimes gray-box testing is born out of a black-box test that determines more knowledge is needed.
-Testing can also be further broken down according to the way it is accomplished. Automated testing uses an all-inclusive toolset. Automated tools can provide plenty of information and many legitimate results for a lesser price than manual testing with a full test team. However, they are also susceptible to false positives and false negatives and don’t always stop where they’re supposed to (software can’t read your agreement contract). Manual testing is the best choice for security assessment. It requires good planning, design, and scheduling, and it provides the best benefit to the client. Manual testing is accomplished by a pen test team, following the explicit guidelines laid out before the assessment.
+Security assessments: security audit (vulnerability assessment) or a penetration test. 
+The security audit:
+    * scans but does not  fix, patch, or exploit vulnerabilities
+    * uncover potential security holes in the system
+    * report them to the client 
+A penetration test:
+    * actively seeks to exploit vulnerabilities
+    * according to an agreement signed before testing begins - limitations, constraints, and liabilities between the organization and the penetration test team.
+Penetration tests consist of two types of assessment: external and internal. 
 
-There are three main phases to a pen test. In the pre-attack phase, reconnaissance and data gathering efforts are accomplished. Gathering competitive intelligence, identi- fying network ranges, checking network filters for open ports, and so on, are all carried out in this phase. Running whois, DNS enumeration, finding the network IP address range, and nmap network scanning are all examples of tasks in this phase.
+Black-box testing takes the longest to accomplish and simulates a true outside hacker.
+White-box testing simulates an internal user who has complete knowledge of the company’s infrastructure. 
+Gray-box testing provides limited information on the infrastructure. Sometimes gray-box testing is born out of a black-box test that determines more knowledge is needed.
+Testing can also be further broken down according to the way it is accomplished.
+    * Automated testing uses an all-inclusive toolset. Cheaper but susceptible to false positives and false negatives and don’t always stop where they’re supposed to (software can’t read your agreement contract).
+    * Manual testing is the best choice for security assessment.
+
+There are three main phases to a pen test:
+    * pre-attack phase: reconnaissance, data gathering. Gathering competitive intelligence, identi- fying network ranges, checking network filters for open ports, and so on, are all carried out in this phase. Running whois, DNS enumeration, finding the network IP address range, and nmap network scanning are all examples of tasks in this phase.
  
 Attempting to penetrate the network perimeter, acquire your targets, execute attacks, and elevate privileges are steps taken in the attack phase. Verifying ACLs by crafting packets, checking to see whether you can use any covert tunnels inside the organization, and using XSS, buffer overflows, and SQL injections are all examples of tasks performed in this phase. After acquiring specific targets, you’ll move into password cracking and privilege escalation, using a variety of methods. Finally, once you’ve gained access, it’s time to execute your attack code.
 The post-attack phase consists of two major steps. The first step involves cleaning up your testing efforts. Anything that has been uploaded to the organization’s systems in the way of files or folders needs to be removed. Any tools, malware, backdoors, or other attack software loaded on the client’s systems need to be taken off. Any registry changes you’ve made need to be reset to their original settings. The goal of this phase is to return everything to the pre-test state.
