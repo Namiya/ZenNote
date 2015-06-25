@@ -526,8 +526,10 @@ Countermeasures against DoS:
     * tools such as Skydance can help detect and prevent DoS attacks. 
     * network ingress filtering as well as some network auditing tools to help along the way.
 
-spoofing is pretending to be a different address with the intent of sniffing traffic while the client works. 
+Spoofing vs Hijacking:
+Spoofing is pretending to be a different address with the intent of sniffing traffic while the client works. 
 Hijacking refers to the active attempt to steal the entire session from the client: The server isn’t even aware of what happened, and the client simply connects again in a different session. 
+
 Session hijack steps include the following:
 1. Sniff the traffic between the client and the server.
 2. Monitor the traffic and predict the sequence numbering. 
@@ -536,9 +538,18 @@ Session hijack steps include the following:
 5. Inject packets to the target server.
 TCP session hijacking is possible because of the way TCP works. As a session-oriented protocol, it provides unique numbers to each packet, which allows the receiving machine to reassemble them in the correct, original order, even if they are received out of order.  Sequence numbers increment on acknowledgment and are an absolute must in stealing the session token.
 
-Ettercap is an excellent man-in-the-middle tool and can be run from a variety of platforms (although it is Linux native). Hunt and T-sight are probably the two best-known . Hunt can sniff, hijack, and reset connections at will, whereas T-sight (commercially available) can easily hijack sessions as well as monitor additional network connections. Other tools include, but are not limited to, Paros (more known as a proxy), BurpSuite, Juggernaut (a well-known Linux-based tool), Hamster, and Ferret.
-A man-in-the-browser attack occurs when the hacker sends a Trojan to intercept browser calls. The Trojan basically sits between the browser and libraries, allowing a hacker to watch, and interact within, a browser session.
-Countermeasures for session hijacking are using unpredictable session IDs, using encryption to protect the channel, limiting incoming connections, minimizing remote access, and regenerating the session key after authentication is complete. Additionally, user education is a valuable mitigation.
+Session Hijacking tools:
+* Ettercap is an excellent man-in-the-middle tool and can be run from a variety of platforms (although it is Linux native). . * Hunt can sniff, hijack, and reset connections at will, whereas
+* T-sight (commercially available) can easily hijack sessions as well as monitor additional network connections. 
+* Paros (more known as a proxy), BurpSuite, Juggernaut (a well-known Linux-based tool), Hamster, and Ferret.
+
+Countermeasures for session hijacking:
+* using unpredictable session IDs
+* using encryption to protect the channel
+* limiting incoming connections
+* minimizing remote access
+* regenerating the session key after authentication is complete.
+* Additionally, user education is a valuable mitigation.
 
 Chapter 9
 
