@@ -455,70 +455,115 @@ Some of the more common Bluetooth tools available for hacking include BlueScan- 
 devices, Super Bluetooth Hack is an all-in-one software package that allows you to do almost anything you want to a device you’re lucky enough to connect to. Other attack options include bluebugger and Bluediving (a full penetration suite for Bluetooth).
 
 Chapter 8
-Malware is generally defined as software designed to harm or secretly access a computer system without the owner’s informed consent. Software is considered to be malware based on the perceived intent of the creator rather than any particular features. Malware can also be defined as a “computer contaminant.”
-Trojans are installed by sending the target an innocent-looking file, inviting him to open it. Once opened, it installs the Trojan, which is designed to steal specific types of information to send back, act as a keylogger, or perform other tasks, including providing a backdoor to the system for future access. Overt channels are legitimate communication channels used by programs across a system or a network, whereas covert channels are used to transport data in unintended ways. Most malware Trojans are downloaded from the Internet, moved via an IRC channel, or clicked as an attachment in an e-mail.
-To make a Trojan appear as a legitimate application, the use of a wrapper is required. Wrappers are programs that allow you to bind an executable of your choice (Trojan) to an innocent file your target won’t mind opening. For example, you might use a program like EliteWrap to embed a backdoor application with a game file (.exe).
 
-In CEH parlance, Trojans are categorized into different groups, each fairly easy to understand. These categories include Defacement, Proxy, FTP, VNC, and command shell. A command-shell Trojan is intended to provide a backdoor to the system that you connect to via command-line access. An example of this is Netcat. Known as the Swiss Army knife of TCP/IP hacking, Netcat provides all sorts of control over a remote shell on a target. When installed and executed on a remote machine, it opens a listening port of your choice. Entering the command nc –l –p 5555 opens port 5555 in a listening state on the target machine. You can then type nc IPAddress –p 5555 and connect to the target machine with a raw “telnet-like” connection. Netcat can be used for outbound or inbound connections, over TCP or UDP, to or from any port on the machine. It offers DNS forwarding, port mapping and forwarding, and proxying. You can even use it as a port scanner.
+Malware can also be defined as a “computer contaminant.”
 
-Some of the more common port numbers used by various Trojans are found in the following table (you’ll need to memorize them for your exam):
+Overt channels are legitimate communication channels used by programs across a system or a network
+Covert channels are used to transport data in unintended ways. 
 
-Several programs are available to you to keep an eye on the port numbers you have in use on your system. A Windows system command-line option is netstat. Entering the command netstat –an will show all connections and listening ports in numerical form. There are also port-scanning tools to make this easier for you. What’s Running, Fport, TCPView, and IceSword are all examples.
-Prevention also requires keeping an eye on the registry, drivers and services being used, and your startup routines. Options include, but are not limited to, SysAnalyzer, Tiny Watcher, Active Registry Monitor, and RegShot. Additionally, many antivirus and malware scanners will watch out for registry errors. Malwarebytes will display all questionable registry settings it finds on a scan, for example. As an aside, Windows will automatically run everything located in Run, RunServices, RunOnce, and RunSer- vicesOnce, and you’ll find that most questions on your exam are centered around or show you settings from HKEY_LOCAL_MACHINE.
-Services and processes are all big indicators of Trojan activity on a machine. Task Manager is a built-in option; however, processes and services can be monitored using many different tools. Windows Service Manager, Service Manager Plus, and Smart Utility are a few examples. And don’t forget to check the startup routines, where most of these will be present; it won’t do you much good to identify a bad service or process and then kill it, only to have it pop up again at the next startup.
+Wrappers are programs that allow you to bind an executable of your choice (Trojan) to an innocent file your target won’t mind opening. For example, you might use a program like EliteWrap to embed a backdoor application with a game file (.exe).
 
-Tripwire and SIGVERIF are used to verify the integrity of critical files, which is considered one of those bedrock actions you need to take in protecting against/detecting Trojans. Tripwire is a very well-respected integrity verifier that can act as a HIDS in pro- tection against Trojans, providing a warning when critical files are altered. SIGVERIF is built into Windows machines to help verify the integrity of critical files on the system. 
+Trojans are categorized into different groups: Defacement, Proxy, FTP, VNC, and command shell. 
+    * A command-shell Trojan: Netcat. 
 
-A virus is a self-replicating program that reproduces its code by attaching copies into other executable codes. In other words, viruses create copies of themselves in other programs. A few of the virus types and the definitions that go with them include the following:
-Boot sector virus Also known as a system virus, this virus type moves the boot sector to another location on the hard drive, forcing the virus code to be executed first. They’re almost impossible to get rid of once you get infected. You can re-create the boot record—old-school fdisk or mbr could do the trick for you—but it’s not necessarily a walk in the park.
-Shell virus Working just like the boot sector virus, this virus type wraps itself around an application’s code, inserting its own code before the application’s. Every time the application is run, the virus code is run first.
-Multipartite virus This attempts to infect both files and the boot sector at the same time. This generally refers to a virus with multiple infection vectors. This link describes one such DoS-type virus: www.f-secure.com/v-descs/neuroqui. shtml. It is multipartite, polymorphic, retroviral, boot sector, and generally a pretty wild bit of code.
-Macro virus Usually written with Visual Basic for Applications (VBA), this virus type infects template files created by Microsoft Office, normally Word and Excel. The Melissa virus was a prime example of this.
-Polymorphic code virus This virus mutates its code using a built-in polymorphic engine. These viruses are difficult to find and remove because their signatures constantly change.
-Metamorphic virus This virus type rewrites itself every time it infects a new file.
-Stealth virus Also known as a “tunneling virus,” this one attempts to evade antivirus (AV) applications by intercepting the AV's requests to operating system (OS) and returning them to the virus instead of OS. The virus then alters the request and sends it back to AV as uninfected, making the virus now appear “clean.”
-A worm is a self-replicating malware computer program that uses a computer network to send copies of itself to other systems without human intervention. Usually it doesn’t alter files, but it resides in active memory and duplicates itself, eating up resources and wreaking havoc along the way. The most common use for a worm in the hacking world is the creation of botnets.
-The most common example of a worm is the Conficker worm, which disables services, denies access to administrator shared drives, locks users out of directories, and restricts access to security-related sites. Symptoms include an “Open folder to view files—Publisher not specified” message in the AutoPlay dialog box. (The original, and legitimate, Windows option reads “Open folder to view files using Windows Explorer.”) Conficker spreads as soon as it is opened (by clicking the first option) to open shares,
+netstat:
+    * Windows system command-line: netstat –an show all connections and listening ports in numerical form.
+port-scanning tools:Fport, TCPView, and IceSword
+
+registry, drivers and services being used, and startup routines:
+    * SysAnalyzer, Tiny Watcher, Active Registry Monitor, and RegShot. 
+    * Malwarebytes will display all questionable registry settings it finds on a scan, for example everything located in Run, RunServices, RunOnce, and RunSer from HKEY_LOCAL_MACHINE.
+    
+Services and processes:
+    * Windows Service Manager
+    * Service Manager Plus
+    * Smart Utility 
+    
+Tripwire and SIGVERIF are used to verify the integrity of critical files. 
+    * Tripwire is a very well-respected integrity verifier that can act as a HIDS in protection against Trojans, providing a warning when critical files are altered. 
+    * SIGVERIF is built into Windows machines to help verify the integrity of critical files on the system. 
+
+A virus is a self-replicating program that reproduces its code by attaching copies into other executable codes. 
+    * Boot sector virus Also known as a system virus, this virus type moves the boot sector to another location on the hard drive, forcing the virus code to be executed first. They’re almost impossible to get rid of once you get infected. You can re-create the boot record—old-school fdisk or mbr could do the trick for you—but it’s not necessarily a walk in the park.
+    * Shell virus Working just like the boot sector virus, this virus type wraps itself around an application’s code, inserting its own code before the application’s. Every time the application is run, the virus code is run first.
+    * Multipartite virus This attempts to infect both files and the boot sector at the same time. This generally refers to a virus with multiple infection vectors. Neuroquila is one such DoS-type virus: www.f-secure.com/v-descs/neuroqui.shtml. It is multipartite, polymorphic, retroviral, boot sector, and generally a pretty wild bit of code.
+    * Macro virus Usually written with Visual Basic for Applications (VBA), this virus type infects template files created by Microsoft Office, normally Word and Excel. The Melissa virus was a prime example of this.
+    * Polymorphic code virus This virus mutates its code using a built-in polymorphic engine. These viruses are difficult to find and remove because their signatures constantly change.
+    * Metamorphic virus This virus type rewrites itself every time it infects a new file.
+    * Stealth virus Also known as a “tunneling virus,” this one attempts to evade antivirus (AV) applications by intercepting the AV's requests to operating system (OS) and returning them to the virus instead of OS. The virus then alters the request and sends it back to AV as uninfected, making the virus now appear “clean.”
+    
+A worm is a self-replicating malware computer program that uses a computer network to send copies of itself to other systems without human intervention. Usually it doesn’t alter files, but it resides in active memory and duplicates itself, eating up resources and wreaking havoc along the way. 
+    * botnets.
+    * Conficker worm, which disables services, denies access to administrator shared drives, locks users out of directories, and restricts access to security-related sites. Symptoms include an “Open folder to view files—Publisher not specified” message in the AutoPlay dialog box. (The original, and legitimate, Windows option reads “Open folder to view files using Windows Explorer.”) Conficker spreads as soon as it is opened (by clicking the first option) to open shares,
 unpatched systems on the network, and systems with weak passwords. Systems with up-to-date patches and even decent passwords are usually safe.
-To protect against viruses and Trojans, a good antivirus program is a must, and you can find good ones that are free or you can pay for one from one of the more well- known providers. The key to an effective AV application is keeping it up to date. Your system is only as good as your signature files. Another good option is the sheepdip computer. A sheepdip system is set up to check physical media, device drivers, and other files for malware before they are introduced to the network. Typically, this computer is used for nothing else and is isolated from the other computers, meaning it is not connected to the network at all. Sheepdip computers are usually configured with a couple of different AV programs, port monitors, registry monitors, and file integrity verifiers.
-A denial-of-service attack is generally thought of as a last-resort attack and is designed to prevent legitimate users from accessing resources. The standard DoS attack seeks to accomplish nothing more than taking down a system or simply denying access to it by authorized users. The distributed denial-of-service (DDoS) attack comes not from one system but many.
-A botnet is a network of zombie computers the hacker can use to start a distributed attack from (examples of botnet software/Trojans are Shark and Poison Ivy). These systems can sit idly by, doing other work for months before being called into action. That action may be as simple as sending a ping or performing some other task relevant to the attack at hand. Normally the preferred communications channel used to signal the bots is IRC or ICQ. Another DoS term is phlashing, which refers to a DoS attack that causes permanent damage to a system—usually damage to the hardware itself.
+
+The key to an effective AV application is keeping it up to date. 
+Another good option is the sheepdip computer. A sheepdip system is set up to check physical media, device drivers, and other files for malware before they are introduced to the network. Typically, this computer is used for nothing else and is isolated from the other computers, meaning it is not connected to the network at all. Sheepdip computers are usually configured with a couple of different AV programs, port monitors, registry monitors, and file integrity verifiers.
+
+A denial-of-service attack is generally thought of as a last-resort attack and is designed to prevent legitimate users from accessing resources. 
+The distributed denial-of-service (DDoS) 
+    * botnet software/Trojans: Shark and Poison Ivy. Normally the preferred communications channel used to signal the bots is IRC or ICQ. 
+    
+phlashing refers to a DoS attack that causes permanent damage to a system—usually damage to the hardware itself.
+    
 Here’s a sampling of DoS and DDoS attacks:
 • SYN attack The hacker will send thousands upon thousands of SYN packets to the machine with a false source IP address. The machine will attempt to respond with a SYN/ACK but will be unsuccessful (because the address is false). Eventually, all the machine’s resources are engaged, and it becomes a giant paperweight.
 • SYN flood In this attack, the hacker sends thousands of SYN packets to the target but never responds to any of the return SYN/ACK packets. Because there is a certain amount of time the target must wait to receive an answer to the SYN/ACK, it will eventually bog down and run out of available connections.
 • ICMP flood Here, the attacker sends ICMP Echo packets to the target with a spoofed (fake) source address. The target continues to respond to an address that doesn’t exist and eventually reaches a limit of packets per second sent.
 • Application level A simple attack whereby the hacker simply sends more “legitimate” traffic to a web application than it can handle, causing the system to crash.
-Smurf The attacker sends a large number of pings to the broadcast address of the subnet, with the source IP spoofed to that of the target. The entire subnet will then begin sending ping responses to the target, exhausting the resources there. A fraggle attack is similar but uses UDP for the same purpose.
-Ping of death (This isn’t a valid attack with modern systems but is still a definition you may need.) In the ping of death, an attacker fragments an ICMP message to send to a target. When the fragments are reassembled, the resultant ICMP packet is larger than the maximum size and crashes the system.
-Teardrop In a teardrop attack, a large number of garbled IP fragments with overlapping, oversized payloads are sent to the target machine. On older operating systems (such as Windows 3.1x, Windows 95, and Windows NT operating systems), this takes advantage of weaknesses in the fragment reassembly functionality of their TCP/IP stack, causing the system to crash or reboot.
-Also, more than a few tools are dedicated to performing DoS on systems. Low Orbit Ion Cannon (LOIC) is a simple-to-use DDoS tool that floods a target with TCP, UDP, or HTTP requests. Others include Trinity, Tribe Flood Network, and R-U-Dead-Yet.
-Countermeasures against DoS attacks include disabling unnecessary services, using a good firewall policy, and keeping security patches and upgrades up to date. All these are pretty standard fare. Additionally, the use of a good NIDS can help against attacks from across the network. Strong, security-conscious code should be an absolute for your applications, and the use of tools such as Skydance can help detect and prevent DoS attacks. You might also look into network ingress filtering as well as some network auditing tools to help along the way.
-Unlike DoS attacks, session hijacking attempts aren’t trying to break anything or shut off access. A session hijack takes advantage of a connection that is already active and authenticated. This differs a little from spoofing in that spoofing is pretending to be a different address with the intent of sniffing traffic while the client works. Hijacking refers to the active attempt to steal the entire session from the client: The server isn’t even aware of what happened, and the client simply connects again in a different session. Session hijack steps include the following:
+• Smurf The attacker sends a large number of pings to the broadcast address of the subnet, with the source IP spoofed to that of the target. The entire subnet will then begin sending ping responses to the target, exhausting the resources there. A fraggle attack is similar but uses UDP for the same purpose.
+• Ping of death (This isn’t a valid attack with modern systems but is still a definition you may need.) In the ping of death, an attacker fragments an ICMP message to send to a target. When the fragments are reassembled, the resultant ICMP packet is larger than the maximum size and crashes the system.
+• Teardrop In a teardrop attack, a large number of garbled IP fragments with overlapping, oversized payloads are sent to the target machine. On older operating systems (such as Windows 3.1x, Windows 95, and Windows NT operating systems), this takes advantage of weaknesses in the fragment reassembly functionality of their TCP/IP stack, causing the system to crash or reboot.
+Low Orbit Ion Cannon (LOIC) is a simple-to-use DDoS tool that floods a target with TCP, UDP, or HTTP requests.
+Others include Trinity, Tribe Flood Network, and R-U-Dead-Yet.
+
+Countermeasures against DoS:
+    * disabling unnecessary services, 
+    * using a good firewall policy
+    * keeping security patches and upgrades up to date.
+    * use of a good NIDS can help against attacks from across the network.
+    * Strong, security-conscious code should be an absolute for your applications, 
+    * tools such as Skydance can help detect and prevent DoS attacks. 
+    * network ingress filtering as well as some network auditing tools to help along the way.
+
+spoofing is pretending to be a different address with the intent of sniffing traffic while the client works. 
+Hijacking refers to the active attempt to steal the entire session from the client: The server isn’t even aware of what happened, and the client simply connects again in a different session. 
+Session hijack steps include the following:
 1. Sniff the traffic between the client and the server.
-2. Monitor the traffic and predict the sequence numbering. 3. Desynchronize the session with the client.
+2. Monitor the traffic and predict the sequence numbering. 
+3. Desynchronize the session with the client.
 4. Predict the session token and take over the session.
 5. Inject packets to the target server.
 TCP session hijacking is possible because of the way TCP works. As a session-oriented protocol, it provides unique numbers to each packet, which allows the receiving machine to reassemble them in the correct, original order, even if they are received out of order.  Sequence numbers increment on acknowledgment and are an absolute must in stealing the session token.
 
-A multitude of tools are available to assist in session hijacking. Ettercap is an excellent man-in-the-middle tool and can be run from a variety of platforms (although it is Linux native). Hunt and T-sight are probably the two best-known session-hijacking tools. Hunt can sniff, hijack, and reset connections at will, whereas T-sight (commercially available) can easily hijack sessions as well as monitor additional network connections. Other tools include, but are not limited to, Paros (more known as a proxy), BurpSuite, Juggernaut (a well-known Linux-based tool), Hamster, and Ferret.
+Ettercap is an excellent man-in-the-middle tool and can be run from a variety of platforms (although it is Linux native). Hunt and T-sight are probably the two best-known . Hunt can sniff, hijack, and reset connections at will, whereas T-sight (commercially available) can easily hijack sessions as well as monitor additional network connections. Other tools include, but are not limited to, Paros (more known as a proxy), BurpSuite, Juggernaut (a well-known Linux-based tool), Hamster, and Ferret.
 A man-in-the-browser attack occurs when the hacker sends a Trojan to intercept browser calls. The Trojan basically sits between the browser and libraries, allowing a hacker to watch, and interact within, a browser session.
 Countermeasures for session hijacking are using unpredictable session IDs, using encryption to protect the channel, limiting incoming connections, minimizing remote access, and regenerating the session key after authentication is complete. Additionally, user education is a valuable mitigation.
 
 Chapter 9
-Cryptography is the science or study of protecting information, whether in transit or at rest, by using techniques to render the information unusable to anyone who does not possess the means to decrypt it. Plain-text data (something you can read) is turned into cipher-text data (something you can’t read) by the application of some form of encryption. Encrypting data provides confidentiality because only those with the “key” can see it. Integrity can also be provided by hashing algorithms. Nonrepudiation is the means by which a recipient can ensure the identity of the sender and that neither party can deny having sent or received the message.
 
-Encryption algorithms—mathematical formulas used to encrypt and decrypt data— are highly specialized and complex. There are two methods in which the algorithms actually work, and there are two methods by which these keys can be used and shared. In stream ciphers, bits of data are encrypted as a continuous stream. In other words, 
-readable bits in their regular pattern are fed into the cipher and are encrypted one at a time. These work at a high rate of speed. Block ciphers combine data bits into blocks and feed them into the cipher. Each block of data, usually 64 bits at a time, is then encrypted with the key and algorithm. These ciphers are considered simpler, and slower, than stream ciphers.
-Symmetric encryption, also known as single key or shared key, simply means one key is used both to encrypt and to decrypt the data. It is considered fast and strong but poses some significant weaknesses. It’s a great choice for bulk encryption because of its speed, but key distribution is an issue because the delivery of the key for the secured channel must be done offline. Additionally, scalability is a concern because as the net- work gets larger, the number of keys that must be generated goes up exponentially. DES, 3DES, Advanced Encryption Standard (AES), International Data Encryption Algorithm (IDEA), Twofish, and Rivest Cipher (RC) are examples.
-Asymmetric encryption comes down to this: What the one key encrypts, the other key decrypts. It’s important to remember the public key is the one used for encryption, whereas the private key is used for decryption. Either can be used for encryption or decryp- tion within the pair, but in general remember public = encrypt, private = decrypt. Asym- metric encryption can provide both confidentiality and nonrepudiation and solves the problems of key distribution and scalability. The weaknesses include its performance (asymmetric is slower than symmetric, especially on bulk encryption) and processing power (asymmetric usually requires a much longer key length, so it’s suitable for smaller amounts of data). Diffie-Hellman, Elliptic Curve Cryptosystem (ECC), El Gamal, and RSA are examples.
-A hashing algorithm is a one-way mathematical function that takes an input and produces a single number (integer) based on the arrangement of the data bits in the input. It provides a means to verify the integrity of a piece of data—change a single bit in the arrangement of the original data, and you’ll get a different response. The attack or effort used against hashing algorithm is known as a collision or a collision attack. A collision occurs when two or more files create the same output, which is not supposed to happen. To protect against collision attacks and the use of rainbow tables, you can also use a salt, which is a collection of random bits used as a key in addition to the hashing algorithm. MD5, SHA-1, and SHA2 are examples of hash algorithms.
-Steganography is the practice of concealing a message inside another medium (such as another file or an image) in such a way that only the sender and recipient even know of its existence, let alone the manner in which to decipher it.
-PKI is a structure designed to verify and authenticate the identity of individuals within the enterprise taking part in a data exchange. It can consist of hardware, software, and policies that create, manage, store, distribute, and revoke keys and digital certificates. The system starts at the top, with a (usually) neutral party known as the certificate authority (CA) that creates and issues digital certificates. The CA also keeps track of all the certificates within the system and maintains a certificate revocation list (CRL), used to track which certificates have problems and which have been revoked.
+Encrypting data provides confidentiality because only those with the “key” can see it. 
+Integrity can also be provided by hashing algorithms.
+Nonrepudiation is the means by which a recipient can ensure the identity of the sender and that neither party can deny having sent or received the message.
 
-A digital certificate is an electronic file that is used to verify a user’s identity, providing nonrepudiation throughout the system. The certificate typically follows the X.509 standard, which defines what should and should not be in a digital certificate. 
-Version, Serial Number, Subject, Algorithm ID (or Signature Algorithm), Issuer, Valid From and Valid To, Key Usage, Subject’s Public Key, and Optional are all fields within a digital certificate. A digital signature is nothing more than an algorithmic output that is designed to ensure the authenticity (and integrity) of the sender.
+Encryption algorithms:
+    * Stream ciphers, bits of data are encrypted as a continuous stream. These work at a high rate of speed. 
+    * Block ciphers combine data bits into blocks and feed them into the cipher. Each block of data, usually 64 bits at a time, is then encrypted with the key and algorithm. These ciphers are considered simpler, and slower, than stream ciphers.
 
-Cipher attacks fall into a few categories and types. Known plain-text attacks, cipher- text-only attacks, and replay attacks are examples. A man-in-the-middle situation is usually listed as a type of attack by many security professionals and study guides (depending on the test version you get, it may even be listed as such). Just keep in mind that a man-in-the-middle situation simply means the attacker has positioned himself between the two communicating entities. Brute force refers to an attempt to try every possible combination against a target until successful.
+Symmetric encryption is considered fast and strong but key distribution is an issue because the delivery of the key for the secured channel must be done offline. Additionally, scalability is a concern. DES, 3DES, Advanced Encryption Standard (AES), International Data Encryption Algorithm (IDEA), Twofish, and Rivest Cipher (RC) are examples.
+
+Asymmetric encryption can provide both confidentiality and nonrepudiation and solves the problems of key distribution and scalability. The weaknesses include its performance (asymmetric is slower than symmetric, especially on bulk encryption) and processing power (asymmetric usually requires a much longer key length, so it’s suitable for smaller amounts of data). Diffie-Hellman, Elliptic Curve Cryptosystem (ECC), El Gamal, and RSA are examples.
+
+A hashing algorithm:  To protect against collision attacks and the use of rainbow tables, you can also use a salt, which is a collection of random bits used as a key in addition to the hashing algorithm. MD5, SHA-1, and SHA2 are examples of hash algorithms.
+
+PKI: certificate authority (CA), certificate revocation list (CRL)
+
+A digital certificate: Version, Serial Number, Subject, Algorithm ID (or Signature Algorithm), Issuer, Valid From and Valid To, Key Usage, Subject’s Public Key, and Optional are all fields within a digital certificate. A digital signature is nothing more than an algorithmic output that is designed to ensure the authenticity (and integrity) of the sender.
+
+Cipher attacks
+    * Known plain-text attacks 
+    * cipher-text-only attacks
+    * replay attacks 
 
 
 Chapter 10
@@ -539,11 +584,16 @@ Mitigating social engineering:
     * Promoting policies and procedures 
     
 
-Physical security measures come down to three major components: physical, tech- nical, and operational. Physical measures include all the things you can touch, taste, smell, or get shocked by. For example, lighting, locks, fences, and guards with Tas- ers are all physical measures. Technical measures are implemented as authentication or permissions. For example, firewalls, IDS, and passwords are all technical measures designed to assist with physical security. Operational measures are the policies and procedures you set up to enforce a security-minded operation.
+Physical security measures come down to three major components: physical, technical, and operational. 
+Physical measures include all the things you can touch, taste, smell, or get shocked by. For example, lighting, locks, fences, and guards with Tasers are all physical measures. 
+Technical measures are implemented as authentication or permissions. For example, firewalls, IDS, and passwords are all technical measures designed to assist with physical security. 
+Operational measures are the policies and procedures you set up to enforce a security-minded operation.
 
-Biometrics includes the measures taken for authentication that come from the “some- thing you are” category. Biometric systems are measured by two main factors. The first, false rejection rate (FRR), is the percentage of time a biometric reader will deny access to a legitimate user. The percentage of time that an unauthorized user is granted access by the system, known as false acceptance rate (FAR), is the second major factor. These are usually graphed on a chart, and the intersecting mark, known as crossover error rate (CER), becomes a ranking method to determine how well the system functions overall.
+Biometrics includes the measures taken for authentication that come from the “something you are” category. 
+Biometric systems are measured by false rejection rate (FRR) and false acceptance rate (FAR), which is the second major factor. 
+These are usually graphed on a chart, and the intersecting mark, known as crossover error rate (CER), becomes a ranking method to determine how well the system functions overall.
 
-The man trap, designed as a pure physical access control, provides additional control and screening at the door or access hallway to the controlled area. In the man trap, two doors are used to create a small space to hold a person until appropriate authentication has occurred. The user enters through the first door, which must shut and lock before the second door can be cleared. Once inside the enclosed room, which normally has clear walls, the user must authenticate through some means—biometric, token with pin, password, and so on—to open the second door.
+The man trap, designed as a pure physical access control, provides additional control and screening at the door or access hallway to the controlled area. In the man trap, two doors are used to create a small space to hold a person until appropriate authentication has occurred. The user enters through the first door, which must shut and lock before the second door can be cleared. Once inside the enclosed room, which normally has clear walls, the user must authenticate through some means biometric, token with pin, password, and so on, to open the second door.
 
 
 Chapter 11
@@ -579,6 +629,7 @@ Control Objectives for Information and Related Technology (COBIT)
 Information Systems Audit and Control Association (ISACA)
 Certified in Risk and Information Systems Control (CRISC) 
 Sarbanes–Oxley, Sarbox (SOX)
+Open Source Security Testing Methodology Manual (OSSTMM)
 
 COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
 
