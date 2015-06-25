@@ -407,52 +407,87 @@ sqlmap, Havij, and sqlninja are all automated scanners designed to look specific
  
 
 Chapter 7
-A wireless network is built with the same concerns as any other media you decide to use. In the wireless data world, these are all defined with standards, known as the 802.11 series. 802.11a can attain speeds up to 54Mbps and uses the 5GHz range. 802.11b has speeds of 11Mbps at 2.4GHz, and 802.11g is 54Mbps at 2.4GHz. 802.11n has speeds over 100Mbps and uses a variety of ranges in MIMO format between 2.4GHz and 5GHz.
-Two other standards of note are 802.11i and 802.16. 802.11i is an amendment to the original 802.11 series standard and specifies security mechanisms for use on the WLAN (wireless LAN). 802.16 was written for the global development of broadband wireless metropolitan area networks. Referred to as “WiMax,” it provides speeds up to 40Mbps and is moving toward gigabit speed.
-Modulation—the practice of manipulating properties of a waveform—is the encoding method of choice in wireless networks. OFDM and DSSS are the modulation methods of choice. Both orthogonal frequency-division multiplexing (OFDM) and direct-sequence spread spectrum (DSSS) use various pieces of a waveform to carry a signal. OFDM works with several waveforms simultaneously carrying messages back and forth: The transmission media is divided into a series of frequency bands that don’t overlap each other, and each of them can then be used to carry a separate signal. DSSS works differently by combining all the available waveforms into a single purpose; the entire frequency bandwidth can be used at once for the delivery of a message.
-There are two main modes a wireless network can operate in. The first is ad hoc, where your system connects directly to another system, as if a cable were strung be- tween the two. Infrastructure mode uses an access point (AP) to funnel all wireless con- nections through. A wireless access point is set up to connect with a link to the outside world (usually some kind of broadband router), and clients associate and authenticate to it. Clients connect to the access point using wireless NICs; if the access point is within range and the device understands what it takes to connect, it is allowed access to the network. Wireless networks can consist of a single access point or multiple ones, thus creating overlapping cells and allowing a user to roam freely without losing con- nectivity. The client needs to associate with an access point first and then disassociate when it moves to the next one.
+
+802.11a can attain speeds up to 54Mbps and uses the 5GHz range. 
+802.11b has speeds of 11Mbps at 2.4GHz,
+802.11g is 54Mbps at 2.4GHz. 
+802.11n has speeds over 100Mbps and uses a variety of ranges in MIMO format between 2.4GHz and 5GHz.
+
+802.11i is an amendment to the original 802.11 series standard and specifies security mechanisms for use on the WLAN (wireless LAN). 
+802.16 was written for the global development of broadband wireless metropolitan area networks. Referred to as “WiMax,” it provides speeds up to 40Mbps and is moving toward gigabit speed.
+
+orthogonal frequency-division multiplexing (OFDM)
+OFDM works with several waveforms simultaneously carrying messages back and forth: The transmission media is divided into a series of frequency bands that don’t overlap each other, and each of them can then be used to carry a separate signal. 
+direct-sequence spread spectrum (DSSS)  
+DSSS works differently by combining all the available waveforms into a single purpose; the entire frequency bandwidth can be used at once for the delivery of a message.
+
+hoc - system connects directly to another system, as if a cable were strung between the two. 
+Infrastructure mode uses an access point (AP) to funnel all wireless connections through.Clients connect to the access point using wireless NICs.
 
 When there is a single access point, its footprint is called a basic service area (BSA). Communication between this single AP and its clients is known as a basic service set (BSS). If you extend the range of your network by adding multiple access points, the setup is known as an extended service set (ESS). As a client moves from one AP in your 
 subnet to another, so long as everything is configured correctly, it’ll disassociate from one AP and (re)associate with another seamlessly. This movement across multiple APs within a single ESS is known as roaming.
-Wireless network design needs to take into account not only the type of antenna used but where it is placed and what is set up to contain or corral the signal. Physical installation of access points is a major concern because you will want to avoid spillage of the signal and loss of power. Most standard APs use an omnidirectional antenna, which means the signal emanates from the antenna in equal strength 360 degrees from the source.
-Directional antennas allow you to focus the signal in a specific direction, which greatly increases signal strength and distance. Other antennas you can use are dipole and parabolic grid. Dipole antennas have, quite obviously, two signal “towers” and work omnidirectionally. Parabolic grid antennas work a lot like satellite dishes and can have phenomenal range (up to 10 miles) but aren’t in use much.
-To identify a wireless network to clients who may be interested in joining, a service set identifier (SSID) must be assigned. The SSID is not a password and provides no security at all for your network. It is a text word (32 characters or less) that only distin- guishes your wireless network from others. SSIDs are broadcast by default and are easily obtainable even if you try to turn off the broadcast (in an effort dubbed SSID cloaking). The SSID is part of the header on every packet, so its discovery by a determined attacker is a given, and securing it is virtually a moot point.
-Wireless authentication can happen in more than a few ways, from the simplistic to the complicated. A client can simply send an 802.11 authentication frame with the appropriate SSID to an AP and have it answer with a verification frame. Or, the client might participate in a challenge/request scenario, with the AP verifying a decrypted “key” for authentication. Or, in yet another twist, you may even tie the whole thing together with an authentication server (Radius), forcing the client into an even more complicated authentication scenario. The key here is to remember there is a difference between association and authentication. Association is the action of a client connect- ing to an AP, whereas authentication actually identifies the client before it can access anything on the network.
-WEP stands for Wired Equivalent Privacy and provides weak security for the wireless network. Using 40-bit to 232-bit keys in an RC4 encryption algorithm, WEP’s primary weakness lies in its reuse of initialization vectors (IVs)—an attacker can simply collect enough packets to decode the WEP shared key. WEP was never intended to fully protect your data; it was designed to give people using a wireless network the same level of protection someone surfing over an Ethernet wired hub would expect.
 
-WEP’s initialization vectors are relatively small and, for the most part, get reused pretty frequently. Additionally, they’re sent in clear text as part of the header. An attacker simply needs to generate enough packets in order to analyze the IVs and come up with the key used. This allows the attacker to decrypt the WEP shared key on the fly, in real time, and renders the encryption useless. Attackers can get APs to generate packets by sending disassociate messages. These aren’t authenticated by any means, 
-so the resulting barrage of “Please associate with me” packets is more than enough for the attack.
-A better choice in encryption technology is Wi-Fi Protected Access (WPA) or WPA-2. WPA makes use of Temporal Key Integrity Protocol (TKIP), a 128-bit key, and the client’s MAC address to accomplish much stronger encryption. The short of it is, WPA changes the key out (hence the “temporal” part of the name) every 10,000 packets or so, instead of sticking with one and reusing it. Additionally, the keys are transferred back and forth during an Extensible Authentication Protocol (EAP) authentication session, which makes use of a four-step handshake process in proving the client belongs to the AP, and vice versa.
-WPA-2 is much the same process; however, it was designed with the government and the enterprise in mind. You can tie EAP or a Radius server into the authentication side of WPA-2, allowing you to make use of Kerberos tickets and all sorts of additional goodies. Additionally, WPA-2 uses AES for encryption, ensuring FIPS 140-2 compliance.
-An AirPcap dongle is a USB wireless adapter that offers all sorts of advantages and software support. If you don’t have one, you may need to research and download new and different drivers for your particular card. The madwifi project may be an answer. Just keep in mind that, much like the ability of our wired adapters to use promiscuous mode for our sniffing efforts (discussed earlier in this book), not all wireless adapters are created equal, and not all will work with your favorite tool. Be sure to check the user guides and man pages for lists and tips on correctly configuring your adapters for use.
-WIGLE (http://wigle.net) helps in identifying geographic locations of wireless net- works; teams of hackers have mapped out wireless network locations using GPS and a tool called NetStumbler. NetStumbler (www.netstumbler.com) can be used for identi- fying poor coverage locations within an ESS, detecting interference causes, and finding any rogue access points in the network. It’s Windows-based, easy to use, and compat- ible with 802.11a, b, and g.
-Kismet is another wireless discovery option. It works on Linux-based systems and, unlike NetStumbler, works passively, meaning it detects access points and clients with- out actually sending any packets. It can detect access points that have not been config- ured (and would then be susceptible to the default out-of-the-box admin password) and will determine which type of encryption you might be up against. It works by “channel hopping” to discover as many networks as possible and has the ability to sniff packets and save them to a log file, readable by Wireshark or tcpdump.
-Another great network discovery tool is NetSurveyor. This free, Windows-based tool provides many of the same features as NetStumbler and Kismet. Additionally, it sup- ports almost all wireless adapters without any significant additional configuration— which is of great benefit to hackers who can’t afford, or don’t have, an AirPcap card. NetSurveyor acts as a great tool for troubleshooting and verifying optimal installation of wireless networks.
+Omnidirectional antenna means the signal emanates from the antenna in equal strength 360 degrees from the source.
+Directional antennas allow you to focus the signal in a specific direction, which greatly increases signal strength and distance. 
+Dipole antennas have, quite obviously, two signal “towers” and work omnidirectionally. 
+Parabolic grid antennas work a lot like satellite dishes and can have phenomenal range (up to 10 miles) but aren’t in use much.
 
-Wireless sniffing is the next important step in hacking wireless networks. Much about sniffing a wireless network is exactly the same as sniffing its wired counterpart. The same protocols and authentication standard weaknesses you looked for with Wire- shark off that switch port are just as weak and vulnerable on wireless. Authentication 
-information, passwords, and all sorts of information can be gleaned just from watching the air.
-Just a few of the tools specifically made for wireless sniffing—in addition to Net- Stumbler and Kismet—include OmniPeek, AirMagnet WiFi Analyzer Pro, and WiFi Pilot. Assuming you have a wireless adapter that is compatible and can watch things in promiscuous mode, OmniPeek is a fairly well-known and respected wireless sniffer. In addition to the same type of traffic analysis you would see in Wireshark, OmniPeek provides network activity status and monitoring in a nice dashboard for up-to-the- minute viewing. AirMagnet WiFi Analyzer, from Fluke Networks, is an incredibly pow- erful sniffer, traffic analyzer, and all-around wireless network auditing software suite. It can be used to resolve performance problems and automatically detect security threats and vulnerabilities.
-The rogue access point is an easy attack on a wireless network whereby an attacker sets up an access point near legitimate APs and tricks users into associating and authen- ticating with it. Sometimes referred to as an “evil twin,” an attack like this is easy to attempt. The only drawback is this attack is sometimes really easy to see, and you run a pretty substantial risk of discovery. You’ll just have to watch out for true security- minded professionals because they’ll be on the lookout for rogue APs on a continual basis and (should) have plenty of tools available to help them out.
-An ad hoc connection attack takes advantage of the ad hoc mode of wireless net- working. An ad hoc connection attack occurs when an attacker simply sits down with a laptop somewhere in your building and advertises an ad hoc network from his laptop, and people eventually begin connecting to it.
-Denial-of-service efforts are also easy attacks to attempt. This can be done in a couple ways, neither of which is particularly difficult. First, you can use any number of tools to craft and send de-authenticate (disassociate) packets to clients of an AP, which will force them to drop their connections. Granted, they may try to immediately climb back aboard, but there’s nothing stopping you from performing the same action again. The other easy DoS wireless attack is to jam the wireless signal altogether, using some type of jamming device and, usually, a high-gain antenna/amplifier. All wireless devices are susceptible to some form of jamming and/or interference—it’s simply a matter of placing enough signal out in the airwaves that the NICs can’t keep up. Tons of jammer options are available (a quick Google search on wireless jammers will show you around 450,000 pages on the subject), ranging from 802.11 networks to Bluetooth and other wireless networking technologies.
-One defense wireless network administrators attempt to use is to enforce a MAC filter. Basically it’s a list of MAC addresses that are allowed to associate to the AP; if your wireless NIC’s address isn’t on the list, you’re denied access. The easy way around this is to monitor the network to figure out which MAC addresses are in use on the AP and simply spoof one of them.
+service set identifier (SSID) is part of the header on every packet, so its discovery by a determined attacker is a given, and securing it is virtually a moot point.
 
-Cracking WEP is ridiculously easy and can be done with any number of tools. The idea revolves around generating enough packets to effectively guess the encryption key. The weak initialization vectors we discussed already are the key; that is, they’re reused 
-and sent in clear text. Regardless of the tool, the standard WEP attack follows the same basic series of steps.
-Start a compatible wireless adapter on your attack machine and ensure it can both inject and sniff packets.
-Start a sniffer to capture packets.
-Use some method to force the creation of thousands and thousands of packets
-(generally by using “de-auth” packets).
-Analyze these captured packets (either in real time or on the side) with a cracking tool.
-Tools for cracking WEP include Cain and Abel and Aircrack (both use Korek, but Aircrack is faster) as well as KisMac, WEPCrack, chopchop, and Elcomsoft’s Wireless Security Auditor tool. KisMAC runs on Mac OS X and can be used to brute-force WEP or WPA.
-Mobile platform attacks come from a variety of attack vectors. BYOD is a ubiquitous business policy called Bring Your Own Device, allowing workers to bring and use their own personal mobile devices in the office. These devices have many vulnerable attack points, such as the apps themselves, malware, loss and theft, and unprotected WiFi access and sniffing. Rooting an Android device (gaining administrative control) is fairly simple with tools like SuperOneClick and Superboot. Sniffing or session hijacking can be just as easy with DroidSheep and FaceNiff.
-Bluetooth refers to an open wireless technology for data exchange over relatively short range (10 meters or less). It was designed originally as a means to reduce cabling but has become a veritable necessity for cell phones and other mobile devices. Although hundreds of tools and options are available for Bluetooth hacking, the good news is their coverage on the exam is fairly light, and most of it comes in the form of identifying terms and definitions.
-Bluetooth devices have two modes—a discovery mode and a pairing mode. Discovery mode determines how the device reacts to inquiries from other devices looking to connect and has three actions. The discoverable action obviously has the device answer to all inquiries, limited discoverable restricts that action, and nondiscoverable tells the device to ignore all inquiries.
-Pairing mode details how the device will react when another Bluetooth system asks to pair with it. There are basically only two versions: Yes, I will pair with you, or no, I will not. Nonpairable rejects every connection request, whereas pairable accepts all of them.
-Bluetooth attacks, taking advantage of this ease of use, fall into four general cat- egories. Bluesmacking is simply a denial-of-service attack against a device. Bluejacking consists of sending unsolicited messages to, and from, mobile devices. Bluesniffing is exactly what it sounds like, and, finally, Bluescarfing is the actual theft of data from a mobile device.
+Wired Equivalent Privacy (WEP) 
+* Using 40-bit to 232-bit keys in an RC4 encryption algorithm
+* WEP’s primary weakness lies in its reuse of initialization vectors (IVs). They’re sent in clear text as part of the header. 
+Wi-Fi Protected Access (WPA) 
+* WPA makes use of Temporal Key Integrity Protocol (TKIP), a 128-bit key, and the client’s MAC address to accomplish much stronger encryption. WPA changes the key out every 10,000 packets or so. Additionally, the keys are transferred back and forth during an Extensible Authentication Protocol (EAP) authentication session, which makes use of a four-step handshake process in proving the client belongs to the AP, and vice versa.
 
-Some of the more common Bluetooth tools available for hacking include BlueScan- ner (from SourceForge), BT Browser, Bluesniff, and btCrawler. After identifying nearby 
-devices, Super Bluetooth Hack is an all-in-one software package that allows you to do almost anything you want to a device you’re lucky enough to connect to. Other attack options include bluebugger and Bluediving (a full penetration suite for Bluetooth).
+WPA-2:
+* tie EAP or a Radius server into the authentication side of WPA-2, allowing you to make use of Kerberos tickets and all sorts of additional goodies. 
+* AES for encryption, ensuring FIPS 140-2 compliance.
+
+AirPcap dongle is a USB wireless adapter that offers all sorts of advantages and software support. 
+WIGLE (http://wigle.net) helps in identifying geographic locations of wireless networks
+NetStumbler (www.netstumbler.com) can be used for identifying poor coverage locations within an ESS, detecting interference causes, and finding any rogue access points in the network. It’s Windows-based, easy to use, and compatible with 802.11a, b, and g.
+Kismet works on Linux-based systems and, unlike NetStumbler, works passively, meaning it detects access points and clients without actually sending any packets. It can detect access points that have not been configured (and would then be susceptible to the default out-of-the-box admin password) and will determine which type of encryption you might be up against. It works by “channel hopping” to discover as many networks as possible and has the ability to sniff packets and save them to a log file, readable by Wireshark or tcpdump.
+NetSurveyo is free, Windows-based tool provides many of the same features as NetStumbler and Kismet. Additionally, it sup- ports almost all wireless adapters without any significant additional configuration— which is of great benefit to hackers who can’t afford, or don’t have, an AirPcap card. NetSurveyor acts as a great tool for troubleshooting and verifying optimal installation of wireless networks.
+
+
+wireless sniffing
+* Net-Stumbler
+* Kismet—include 
+* OmniPeek: provides network activity status and monitoring in a nice dashboard for up-to-the- minute viewing.
+* AirMagnet WiFi Analyzer Pro: from Fluke Networks, is an incredibly powerful sniffer, traffic analyzer, and all-around wireless network auditing software suite. It can be used to resolve performance problems and automatically detect security threats and vulnerabilities.
+* WiFi Pilot. 
+
+The rogue access point sometimes referred to as an “evil twin,” an attack like this is easy to attempt. The only drawback is this attack is sometimes really easy to see, and you run a pretty substantial risk of discovery. 
+An ad hoc connection attack takes advantage of the ad hoc mode of wireless networking. An ad hoc connection attack occurs when an attacker simply sits down with a laptop somewhere in your building and advertises an ad hoc network from his laptop, and people eventually begin connecting to it.
+Denial-of-service attack:
+* craft and send de-authenticate (disassociate) packets to clients of an AP, which will force them to drop their connections. * jam the wireless signal altogether, using some type of jamming device and, usually, a high-gain antenna/amplifier.
+
+Defense:
+* enforce a MAC filter. Basically it’s a list of MAC addresses that are allowed to associate to the AP. The easy way around this is to spoof one of them.
+
+Tools for cracking WEP:
+* Cain and Abel and Aircrack (both use Korek, but Aircrack is faster) 
+* KisMac runs on Mac OS X and can be used to brute-force WEP or WPA.
+* WEPCrack, chopchop, and Elcomsoft’s Wireless Security Auditor tool. 
+
+Mobile platform attacks come from a variety of attack vectors. 
+* BYOD is a ubiquitous business policy called Bring Your Own Device
+* Rooting an Android device (gaining administrative control) is fairly simple with tools like SuperOneClick and Superboot. 
+* Sniffing or session hijacking can be just as easy with DroidSheep and FaceNiff.
+
+Bluetooth refers to an open wireless technology for data exchange over relatively short range (10 meters or less). 
+Bluetooth devices have two modes:
+* Discovery mode determines how the device reacts to inquiries from other devices looking to connect and has three actions. The discoverable action obviously has the device answer to all inquiries, limited discoverable restricts that action, and nondiscoverable tells the device to ignore all inquiries.
+* Pairing mode details how the device will react when another Bluetooth system asks to pair with it. There are basically only two versions: Yes, I will pair with you, or no, I will not. 
+
+Bluetooth attacks
+* Bluesmacking is simply a denial-of-service attack against a device. 
+* Bluejacking consists of sending unsolicited messages to, and from, mobile devices. 
+* Bluesniffing is exactly what it sounds like
+* Bluescarfing is the actual theft of data from a mobile device.
+
+Some of the more common Bluetooth tools available for hacking include BlueScanner (from SourceForge), BT Browser, Bluesniff, and btCrawler. After identifying nearby devices, Super Bluetooth Hack is an all-in-one software package that allows you to do almost anything you want to a device you’re lucky enough to connect to. Other attack options include bluebugger and Bluediving (a full penetration suite for Bluetooth).
 
 Chapter 8
 
@@ -641,11 +676,13 @@ Information Systems Audit and Control Association (ISACA)
 Certified in Risk and Information Systems Control (CRISC) 
 Sarbanes–Oxley, Sarbox (SOX)
 Open Source Security Testing Methodology Manual (OSSTMM)
+Federal Information Processing Standards (FIPS) 
 
 COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
 
 CRISC is a certification for information technology professionals with experience in managing IT risks, awarded by ISACA. 
 
+FIPS are U.S. government computer security standards that specify requirements for cryptography modules. 
 ----------------------------------------------------------------
 ARP spoofing, ARP cache poisoning, or ARP poison routing, is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP) messages onto a local area network. Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as thedefault gateway, causing any traffic meant for that IP address to be sent to the attacker instead.
 ARP spoofing may allow an attacker to intercept data frames on a network, modify the traffic, or stop all traffic. Often the attack is used as an opening for other attacks, such as denial of service, man in the middle, orsession hijacking attacks.[1]
