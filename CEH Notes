@@ -251,61 +251,125 @@ FIPS are U.S. government computer security standards that specify requirements f
 
 Chapter 2
 
-Some tools available to help in this regard are the National Vulnerability Database (nvd.nist.gov), Securitytracker (www.security- tracker.com), Hackerstorm Vulnerability Database Tool (www.hackerstrom.com), and SecurityFocus (www.securityfocus.com).
+Competitive intelligence refers to the information gathered by a business entity about its competitors’ customers, products, and marketing. Most of this information is readily available and is perfectly legal for you to pursue and acquire. 
+Competitive intelligence tools include Google Alerts, Yahoo! Site Explorer, SEO for Firefox, SpyFu, Quarkbase, and DomainTools.com.
 
-Footprinting is defined as the process of gathering information on computer sys- tems and networks. It is the first step in information gathering and provides a high- level blueprint of the target system or network. Footprinting follows a logical flow— investigating web resources and competitive intelligence, mapping out network ranges, mining whois and DNS, and finishing up with social engineering, e-mail tracking, and Google hacking.
+DNS lookups generally use UDP port 53, whereas zone transfers use TCP 53.
+DNS records are as follows:
+* SRV (Service) Defines the hostname and port number of servers providing specific services, such as a Directory Services server.
+* SOA (Start of Authority) Identifies the primary name server for the zone. The SOA record contains the hostname of the server responsible for all DNS records within the namespace, as well as the basic properties of the domain.
+* PTR (Pointer) Maps an IP address to a hostname (providing for reverse DNS lookups).
+* NS (Name Server) Defines the name servers within your namespace.
+* MX (Mail Exchange) Identifies the e-mail servers within your domain.
+* CNAME (Canonical Name) Provides for domain name aliases within your zone.
+* A (Address) Maps a hostname to an IP address and is used most often for DNS lookups.
 
- 
-Competitive intelligence refers to the information gathered by a business entity about its competitors’ customers, products, and marketing. Most of this information is readily available and is perfectly legal for you to pursue and acquire. Competitive intelligence tools include Google Alerts, Yahoo! Site Explorer, SEO for Firefox, SpyFu, Quarkbase, and DomainTools.com.
-DNS provides ample opportunity for footprinting. DNS consists of servers all over the world, with each server holding and managing records for its own namespace. DNS lookups generally use UDP port 53, whereas zone transfers use TCP 53. Each of these records gives directions to or for a specific type of resource. DNS records are as follows:
-SRV (Service) Defines the hostname and port number of servers providing specific services, such as a Directory Services server.
-SOA (Start of Authority) Identifies the primary name server for the zone. The SOA record contains the hostname of the server responsible for all DNS records within the namespace, as well as the basic properties of the domain.
-PTR (Pointer) Maps an IP address to a hostname (providing for reverse DNS lookups).
-NS (Name Server) Defines the name servers within your namespace.
-MX (Mail Exchange) Identifies the e-mail servers within your domain.
-CNAME (Canonical Name) Provides for domain name aliases within your zone.
-A (Address) Maps an IP address to a hostname and is used most often for DNS lookups.
-The SOA record provides information on source host (hostname of the SOA server), contact e-mail (e-mail address of the person responsible for the zone file), serial num- ber (revision number of the zone file), refresh time (the number of seconds a secondary DNS server will wait before asking for updates), retry time (the number of seconds a secondary server will wait to retry if the zone transfer fails), expire time (the maximum number of seconds a secondary server will spend trying to complete a zone transfer), and TTL (the minimum time to live for all records in the zone).
-DNS information for footprinting can also be garnered through the use of whois, which originally started in Unix and has generated any number of websites set up spe- cifically for its purpose. It queries the registries and returns all sorts of information, including domain ownership, addresses, locations, and phone numbers. Well-known websites for DNS or whois footprinting include www.geektools.com, www.dnsstuff. com, and www.samspade.com.
-The nslookup command is part of virtually every operating system in the world and provides a means to query DNS servers for information. The syntax for the tool is as follows:
-nslookup [-options] {hostname | [-server]}The command can be run as a single instance, providing information based on the options you choose, or you can run it in interactive mode, where the command runs as a tool, awaiting input from you. The command can also provide for a zone transfer, using ls -d. A zone transfer differs from a “normal” DNS request in that it pulls every record from the DNS server instead of just the one, or one type, you’re looking for.
+The SOA record provides information
+* source host (hostname of the SOA server), 
+* contact e-mail (e-mail address of the person responsible for the zone file),
+* serial number (revision number of the zone file), 
+* refresh time (the number of seconds a secondary DNS server will wait before asking for updates), 
+* retry time (the number of seconds a secondary server will wait to retry if the zone transfer fails), 
+* expire time (the maximum number of seconds a secondary server will spend trying to complete a zone transfer), and
+* TTL (the minimum time to live for all records in the zone).
+
+DNS information for footprinting can also be garnered through the use of whois, which originally started in Unix. It queries the registries and returns all sorts of information, including 
+* domain ownership, 
+* addresses, 
+* locations, and
+* phone numbers. 
+
+Well-known websites for DNS or whois footprinting include www.geektools.com, www.dnsstuff. com, and www.samspade.com.
+
+The nslookup command syntax for the tool is as follows:
+nslookup [-options] {hostname | [-server]}
+* zone transfer, using ls -d. A zone transfer differs from a “normal” DNS request in that it pulls every record from the DNS server instead of just the one, or one type, you’re looking for.
 
 Native to Unix systems but available as a download for Windows systems (along with BIND 9), dig is another tool used to test a DNS query and report the results. The basic syntax for the command is
 dig @server name type
-where server is the name or IP of the DNS name server, name is the name of the resource you’re looking for, and type is the type of record you want to pull.
-Determining network range is another important footprinting task for the ethical hacker. If you simply enter an IP address in www.arin.net, the network range will be shown. Additionally, traceroute (or tracert hostname on Windows systems) is a command-line tool that tracks a packet across the Internet and provides the route path and transit times. McAfee’s Visual Trace (NeoTrace to some), Trout, and VisualRoute are all examples of applications that use this information to build a visual map, showing geographical locations as well as technical data.
+* server is the name or IP of the DNS name server, 
+* name is the name of the resource you’re looking for
+* type is the type of record you want to pull
+
+Determining network range:
+* enter an IP address in www.arin.net, the network range will be shown. 
+* traceroute (or tracert hostname on Windows systems) is a command-line tool that tracks a packet across the Internet and provides the route path and transit times. 
+* McAfee’s Visual Trace (NeoTrace to some), Trout, and VisualRoute are all examples of applications that use this information to build a visual map, showing geographical locations as well as technical data.
 
 Chap 3
 
-EC-Council’s scanning methodology phases include the following: check for live systems, check for open ports, scan beyond IDS, perform banner grabbing, scan for vulnerabilities, draw network diagrams, and prepare proxies.
+Scanning methodology phases:
+* check for live systems,
+* check for open ports, 
+* scan beyond IDS, 
+* perform banner grabbing, 
+* scan for vulnerabilities, 
+* draw network diagrams, and 
+* prepare proxies.
+
 Examples of protocols making use of UDP are TFTP, DNS, and DHCP.
+
 Six flags can be set in the TCP header: URG (Urgent), ACK (Acknowledgment), PSH (Push), RST (Reset), SYN (Synchronize), and FIN (Fin- ish).
-The port numbers range from 0 to 65,535 and are split into three different groups: Well-known (0–1023), Registered (1024–49151), and Dynamic (49152–65535). A system is said to be listening for a port when it has that port open. Typing netstat -an displays all connections and listening ports, with addresses and port numbers in numerical form.
-A ping sweep is the easiest method for identifying active machines on the network. An ICMP Echo Request (Type 8) message is sent to each address on the subnet. Those that are up (and not filtering ICMP) reply with an ICMP Echo Reply (Type 0). Several tools can provide for ping sweeps; Angry IP Scanner, Pinger, WS_Ping, SuperScan, and Friendly Pinger are all examples.
+
+The port numbers range from 0 to 65,535 and are split into three different groups: 
+* Well-known (0–1023), 
+* Registered (1024–49151), and 
+* Dynamic (49152–65535). 
+
+netstat -an 
+    displays all connections and listening ports, with addresses and port numbers in numerical form.
+A ping sweep is the easiest method for identifying active machines on the network. 
+An ICMP Echo Request (Type 8) message is sent to each address on the subnet. Those that are up (and not filtering ICMP) reply with an ICMP Echo Reply (Type 0). Several tools can provide for ping sweeps; Angry IP Scanner, Pinger, WS_Ping, SuperScan, and Friendly Pinger are all examples.
 
 nmap <scan options> <target>
-The “s” commands determine the type of scan to perform, the “P” commands set up ping sweep options, and the “o” commands deal with output. The “T” commands deal with speed and stealth, with the serial methods taking the longest amount of time. Parallel methods are much faster because they run multiple scans simultaneously. Nmap switches you’ll definitely see on the exam are -sS (SYN scan), -sA (ACK scan), -sO (protocol scan), -sX (XMAS scan), and all of the “T” commands.
-There are seven generic scan types for port scanning. TCP Connect scans run through a full connection (three-way handshake) on all ports. They are the easiest to detect but definitely the most reliable. Open ports will respond with a SYN/ACK, and closed ports will respond with an RST/ACK. SYN scans are known as half-open scans, with only SYN packets sent to ports (no completion of the three-way handshake ever takes place) and are easily detected by IDS. Responses from ports are the same as they are for a TCP Con- nect scan. FIN scans run the communications setup in reverse, sending a packet with the FIN flag set. Closed ports respond with RST, whereas open ports won’t respond at all. XMAS scans send multiple flags set (FIN, URG, and PSH). Port responses are the same as with a FIN scan. ACK scans are used mainly for Unix/Linux-based systems and make use of ICMP destination unreachable messages to determine what ports may be open on a firewall. IDLE scans use a spoofed IP address to elicit port responses during a scan. Designed for stealth, this scan uses a SYN flag and monitors responses as with a SYN scan. Finally, NULL scans send packets with no flags set. Responses will vary, depending on the OS and version, but NULL scans are designed for Unix/Linux machines.
-War dialing is a process by which an attacker dials a set of phone numbers specifi- cally looking for an open modem. As you know, modems are designed to answer the call, and they can easily provide back-door access to a system otherwise completely secured from attack. Tools for accomplishing war dialing are ToneLoc, THC-Scan, WarVox (designed explicitly for VoIP systems), PAWS, and TeleSweep.
-War driving used to refer to driving around in a car looking for open access points. In the ethical hacking realm, it still indicates a search for open WAPs; however, with the proliferation of handheld devices making use of 802.11 wireless standards, finding access points is as easy as simply wandering around the facility. Additionally, several tools are available to help you not only in discovering wireless entry points but in find- ing vulnerabilities in wireless networking. Silica, AirMagnet, and AirCheck (Fluke) are all tools on handheld devices that allow an attacker to walk around and gather—and sometimes even exploit—wireless access point vulnerabilities.
+“s” - determine the type of scan to perform,
+“P” - set up ping sweep options, 
+“o” - deal with output. 
+“T” - deal with speed and stealth, with the serial methods taking the longest amount of time. Parallel methods are much faster because they run multiple scans simultaneously.
+-sS (SYN scan), 
+-sA (ACK scan),
+-sO (protocol scan), 
+-sX (XMAS scan), 
 
-Hiding your activities from prying security-professional eyes can be done using a proxy, spoofing an IP address, using source routing, or using an anonymizer. A proxy server is nothing more than a system you set up to act as an intermediary between you and your targets. The hacker sends commands and requests to the proxy, and the proxy relays them to the targets. Anyone monitoring the subnet sees the proxy trying all this naughtiness, not the hacker. Spoofing an IP address is exactly what it sounds like—the hacker uses a packet-crafting tool of some sort to obscure the source IP address of pack- ets sent from his machine. There are many tools available for this, such as hping, Scapy, and Nemesis.
+Port Scan:
+* TCP Connect scans run through a full connection (three-way handshake) on all ports. Open ports will respond with a SYN/ACK, and closed ports will respond with an RST/ACK. 
+* SYN scans are known as half-open scans, with only SYN packets sent to ports (no completion of the three-way handshake ever takes place) and are easily detected by IDS. Responses from ports are the same as they are for a TCP Connect scan. 
+* FIN scans run the communications setup in reverse, sending a packet with the FIN flag set. Closed ports respond with RST, whereas open ports won’t respond at all. 
+* XMAS scans send multiple flags set (FIN, URG, and PSH). Port responses are the same as with a FIN scan. 
+* ACK scans are used mainly for Unix/Linux-based systems and make use of ICMP destination unreachable messages to determine what ports may be open on a firewall. 
+* IDLE scans use a spoofed IP address to elicit port responses during a scan. Designed for stealth, this scan uses a SYN flag and monitors responses as with a SYN scan. 
+* NULL scans send packets with no flags set. Responses will vary, depending on the OS and version, but NULL scans are designed for Unix/Linux machines.
 
-ource routing provides yet another means to disguise your identity on a network. It was originally designed to allow applications to specify the route a packet would take to a destination, regardless of what the route tables between the two systems said. The attacker can use an IP address of another machine on the subnet and have all the return traffic sent back regardless of which routers are in transit. Protections against source- routing attacks are prevalent and effective in modern systems, so this may not be your best option. Another easy method for disguising your identity for port 80 (HTTP) traffic is to use an anonymizer. Anonymizers are services on the Internet that use a web proxy to hide your identity.
-When we enumerate a target, we’re moving from passive information gathering to a much more active state. No longer satisfied with just knowing which ports are open, we now want to find things such as open shares and any easy-to-grab user account information.
-Microsoft Windows machines—everything from old Windows 2000 to Windows 7 systems—will constitute the vast majority of your targets in the real world, so it’s important to know some security basics before enumerating them. User rights are granted via an account’s membership within a group and determine which system tasks an account is allowed to perform. Permissions are used to determine which resources an account has access to. The method by which Windows keeps track of which account holds what rights and permissions comes down to SIDs and RIDs. A security identifier (SID) identifies user, group, and computer accounts and follows a specific format. A resource identifier (RID) is a portion of the overall SID identifying a specific user, com- puter, or domain.
+War dialing is a process by which an attacker dials a set of phone numbers specifically looking for an open modem. 
+Modems are designed to answer the call, and they can easily provide back-door access to a system otherwise completely secured from attack. Tools for accomplishing war dialing are ToneLoc, THC-Scan, WarVox (designed explicitly for VoIP systems), PAWS, and TeleSweep.
+
+War driving used to refer to driving around in a car looking for open access points. Additionally, several tools are available to help you not only in discovering wireless entry points but in finding vulnerabilities in wireless networking. Silica, AirMagnet, and AirCheck (Fluke) are all tools on handheld devices that allow an attacker to walk around and sometimes even exploit—wireless access point vulnerabilities.
+
+Hiding your activities:
+* using a proxy, 
+* spoofing an IP address, such as hping, Scapy, and Nemesis. 
+* using source routing: Source Routing is a technique whereby the sender of a packet can specify the route that a packet should take through the network. The attacker can use an IP address of another machine on the subnet and have all the return traffic sent back regardless of which routers are in transit.
+* using an anonymizer. Anonymizers are services on the Internet that use a web proxy to hide your identity.
+
+When we enumerate a target, we now want to find things such as open shares and any easy-to-grab user account information.
+
+The method by which Windows keeps track of which account holds what rights and permissions comes down to SIDs and RIDs. A security identifier (SID) identifies user, group, and computer accounts and follows a specific format. A resource identifier (RID) is a portion of the overall SID identifying a specific user, computer, or domain.
 SIDs are composed of an S, followed by a revision number, an authority value, a domain or computer indicator, and a RID. The RID portion of the identifier starts at 500 for the administrator account. The next account on the system, Guest, is RID 501. All users created for the system start at 1000 and increment from that point forward— even if their usernames are re-created later.
-Accounts are identified by their SID (and associated RID), of course, but the pass- words for them must be stored somewhere, too. In Windows, passwords are stored in C:\Windows\System 32\Config\SAM. The SAM database holds encrypted versions of all the local passwords for accounts on the machine. For those machines that are part of a domain, the passwords are stored and handled by the domain controller.
+In Windows, passwords are stored in C:\Windows\System 32\Config\SAM. The SAM database holds encrypted versions of all the local passwords for accounts on the machine. For those machines that are part of a domain, the passwords are stored and handled by the domain controller.
+
 A null session occurs when you log in to a system with no user ID and password at all. In older Windows versions (Windows 2000), a null session could be set up using the following command:
 net use \\<target>\IPC$ "" /u:""
-Null sessions require TCP ports 135, 137, 139, and 445 to work and have been virtu- ally eliminated from the hacking arsenal since Windows XP was released.
+Null sessions require TCP ports 135, 137, 139, and 445 to work and have been virtually eliminated from the hacking arsenal since Windows XP was released.
 
 Linux systems use a user ID (UID) and a group ID (GID) in much the same way as Windows uses SIDs and RIDs. On a Linux machine, these can be found in the /etc/ passwd file.
 
-Banner grabbing is one of the easiest enumerating methods and involves sending an unsolicited request to an open port to see what, if any, default error message (ban- ner) is returned. Depending on what version of application is running on the port, the returned banner can indicate a potential vulnerability for the hacker to exploit. A com- mon method of performing banner grabbing is to use Telnet aimed at a specific port. For example, to banner-grab from a suspected web server, typing telnet <IPAddress> 80 would attempt a connection over port 80.
-Another tool for banner grabbing (and other uses) is netcat. Known as the “Swiss Army knife of hacking tools,“ netcat is a command-line networking utility that reads and writes data across network connections using TCP/IP. It’s also a tunneling protocol, a scanner, and an advanced hacking tool. To try banner grabbing with this little jewel, simply type nc <IPaddress or FQDN> <port number>.
+telnet <IPAddress> 80 would attempt a connection over port 80.
+netcat: 
+  * a command-line networking utility that reads and writes data across network connections using TCP/IP. 
+  * a tunneling protocol, a scanner, and an advanced hacking tool. 
+  * banner grabbing - nc <IPaddress or FQDN> <port number>.
 
-SNMP enumeration may also prove useful. SNMP uses a community string as a form of password, with the read-only version of the community string allowing a requester to read virtually anything SNMP can drag out of the device. The read-write version is used to control access for SNMP SET requests, which can actually change settings on a device. The defaults for both of these strings are public (read-only) and private (read- write). Assuming the network administrator left SNMP enabled and/or did not change the default strings, enumerating with SNMP is relatively easy, and tools for accomplish- ing this are SNMPUtil and IP Network Browser (SolarWinds).
+SNMP enumeration may also prove useful. SNMP uses a community string as a form of password, with the read-only version of the community string allowing a requester to read virtually anything SNMP can drag out of the device. The read-write version is used to control access for SNMP SET requests, which can actually change settings on a device. The defaults for both of these strings are public (read-only) and private (read-write). Assuming the network administrator left SNMP enabled and/or did not change the default strings, enumerating with SNMP is relatively easy, and tools for accomplishing this are SNMPUtil and IP Network Browser (SolarWinds).
 
 
 Chapter 4
@@ -349,27 +413,78 @@ Sniffing categories: passive and active.
 Port security refers to a security feature on switches that allows an administrator to manually assign MAC addresses to a specific port, or even a specific number of addresses a port is allowed to resolve. 
 
 Tools for spoofing a MAC address include Cain and Abel, Scapy (native to Unix), Packet Crafter, and SMAC.
-ARP poisoning (a.k.a. gratuitous ARP) is the process of maliciously changing an ARP cache on a machine to inject faulty entries. Tools that make ARP flooding as easy as pressing a button are Cain and Abel (a great Windows hacking tool), WINARPAttacker, Ufasoft, and dsniff (a collection of Linux tools holding a tool called ARPspoof).
-DHCP starvation is an attack whereby the malicious agent attempts to exhaust all available addresses from the server. While it’s more of a denial-of-service type of attack, don’t be surprised to see it pop up in a sniffing question. Configuring DHCP snooping on your network device is considered the proper mitigation against this attack.
-Wireshark, Ettercap, EtherPeek, and even Snort (better known as an IDS, though) are all examples of sniffers.
-Wireshark can capture packets from wired or wireless networks and provides a fairly easy-to-use interface. The top portion of the display is called the Packet List and shows all the captured packets. The middle portion, Packet Detail, displays the sections within the frame and packet headers. The bottom portion displays the actual hex entries in the highlighted section. Following a TCP stream is a great way to discover passwords in the clear. Another great feature of Wireshark is its ability to filter a packet capture to your specifications. A filter can be created by typing in the correct stream in the filter window, by right-clicking a packet or protocol header and choosing Apply As Filter, or by clicking the Expression button beside the filter screen and checking off what you’d like. In any case, the filter will display only what you’ve chosen.
-Examples of filters include host 192.168.1.102 (displays traffic to or from 192.168.1.102), net 192.168.1.0/24 (displays traffic to or from the subnet 192.168.1.1- 255), and port 80 (displays all port 80 traffic). During a capture, you can also click the Capture Filters selection from the Capture menu item and choose all sorts of pre- defined filters. Wireshark also has the ability to filter based on a decimal numbering system assigned to TCP flags. The assigned flag decimal numbers are FIN = 1, SYN = 2, RST = 4, PSH = 8, ACK = 16, and URG = 32. Adding these numbers together (for example, SYN + ACK = 18) allows you to simplify a Wireshark filter. For example, tcp .flags == 0x2 looks for SYN packets, tcp.flags == 0x16 looks for ACK packets, and tcp .flags == 0x18 looks for both.
-tcpdump is another popular sniffing tool (WinDump is a Windows GUI version). It is a command-line tool that simply prints a description of the contents of packets on a network interface that match a given filter (Boolean expression). The syntax for this tool is fairly simple: tcpdump flag(s) interface. For example, tcpdump -i eth1 puts the interface in listening mode, capturing pretty much anything that comes across eth1. If you were to add the -w flag, you could specify a file in which to save the data, for review later. The follow- ing command will show all data packets (no SYN, FIN, or ACK-only) to and from port 80:
-tcpdump 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) -
-((tcp[12]&0xf0)>>2)) != 0)'
 
-Other tools include Ettercap (a powerful sniffer and man-in-the-middle suite of programs), Snort (most often discussed as an intrusion detection application), Ether- Peek, WinDump, and WinSniffer.
-Intrusion detection systems (IDSs) are hardware and/or software devices that exam- ine streams of packets for unusual or malicious behavior. This is done via a signature list, where the IDS compares packets against a list of known traffic patterns that indicate an attack or via a traffic comparison over time, where the anomaly-based system learns the normal traffic patterns of the subnet. A signature-based system is only as good as the signature list itself; if you don’t keep it up to date, newer intrusion methods may go undetected. A behavior-based system may be better at picking up the latest attacks because they would definitely be out of the norm. An anomaly-based system is more susceptible to false positives. A false negative occurs when traffic is deemed to be fine, with no alarm sounding when, in fact, an intrusion attempt did occur.
-IDSs are either host based (HIDS) or network based (NIDS). HIDSs reside on the host, providing individual host protection. NIDSs provide monitoring of all network traffic, based on where the network tap is installed. Some popular HIDS examples in- clude Cybersafe, Tripwire, Norton Internet Security, and even firewalls and other fea- tures built into the operating system.
-Snort is an open source NIDS that combines the benefits of signature-, protocol-, and anomaly-based inspection. It has become the de facto standard for IDS and is in use on networks ranging from small businesses to U.S. government enterprise systems. It is a powerful sniffer, traffic logging, and protocol analyzing tool that can detect buf- fer overflows, port scans, operating system fingerprinting, and almost every conceivable external attack or probe you can imagine.
-Snort rules are composed of an action, a protocol, a source address/port, a destina- tion address/port, and message parameters. Here’s an example:
+Tools that make ARP flooding
+* Cain and Abel (a great Windows hacking tool), WINARPAttacker, Ufasoft, and dsniff (a collection of Linux tools holding a tool called ARPspoof).
+
+DHCP starvation is an attack whereby the malicious agent attempts to exhaust all available addresses from the server.  Configuring DHCP snooping on your network device is considered the proper mitigation against this attack.
+
+Wireshark, Ettercap, EtherPeek, and even Snort (better known as an IDS, though) are all examples of sniffers.
+Wireshark can capture packets from wired or wireless networks and provides a fairly easy-to-use interface. 
+* The top portion of the display is called the Packet List and shows all the captured packets. 
+* The middle portion, Packet Detail, displays the sections within the frame and packet headers. 
+* The bottom portion displays the actual hex entries in the highlighted section. 
+Examples of filters include:
+* host 192.168.1.102 (displays traffic to or from 192.168.1.102), 
+* net 192.168.1.0/24 (displays traffic to or from the subnet 192.168.1.1- 255), and 
+* port 80 (displays all port 80 traffic). 
+Wireshark also has the ability to filter based on a decimal numbering system assigned to TCP flags. The assigned flag decimal numbers are FIN = 1, SYN = 2, RST = 4, PSH = 8, ACK = 16, and URG = 32. Adding these numbers together (for example, SYN + ACK = 18) allows you to simplify a Wireshark filter. 
+* tcp .flags == 0x2 looks for SYN packets, 
+* tcp.flags == 0x16 looks for ACK packets, and 
+* tcp .flags == 0x18 looks for both.
+
+tcpdump is another popular sniffing tool (WinDump is a Windows GUI version). 
+tcpdump flag(s) interface. 
+* tcpdump -i eth1 
+  puts the interface in listening mode, capturing pretty much anything that comes across eth1. If you were to add the -w flag, you could specify a file in which to save the data, for review later. 
+* tcpdump 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'
+  show all data packets (no SYN, FIN, or ACK-only) to and from port 80
+  
+Other tools include 
+* Ettercap (a powerful sniffer and man-in-the-middle suite of programs), 
+* Snort (most often discussed as an intrusion detection application), 
+* Ether- Peek, WinDump, and WinSniffer.
+
+Intrusion detection:
+* signature-baseed, where the IDS compares packets against a list of known traffic patterns that indicate an attack 
+* anomaly-based via a traffic comparison over time, system learns the normal traffic patterns of the subnet. 
+A signature-based system is only as good as the signature list itself; if you don’t keep it up to date, newer intrusion methods may go undetected. A behavior-based system may be better at picking up the latest attacks because they would definitely be out of the norm. An anomaly-based system is more susceptible to false positives. A false negative occurs when traffic is deemed to be fine, with no alarm sounding when, in fact, an intrusion attempt did occur.
+
+IDSs are either host based (HIDS) or network based (NIDS). 
+* HIDSs reside on the host, providing individual host protection. Some popular HIDS examples in- clude Cybersafe, Tripwire, Norton Internet Security, and even firewalls and other features built into the operating system.
+* NIDSs provide monitoring of all network traffic, based on where the network tap is installed. 
+
+Snort is an open source NIDS that combines the 
+    * benefits of signature-, 
+    * protocol-, and 
+    * anomaly-based inspection. 
+Snort is a 
+    * powerful sniffer,
+    * traffic logging, and  
+    * protocol analyzing tool 
+Snort can  
+    * detect buffer overflows, 
+    * port scans, 
+    * operating system fingerprinting, and 
+    * almost every conceivable external attack or probe you can imagine.
+Snort rules are composed of an action, a protocol, a source address/port, a destination address/port, and message parameters. Here’s an example:
 alert tcp !HOME_NET any -> $HOME_NET 31337 (msg :"BACKDOOR ATTEMPT-Backorifice")
 Raw Snort output provides all sorts of information, and the ports and addresses sections are of specific importance.
-A firewall is an appliance within a network that is designed to protect internal resources from unauthorized external access. Firewalls work with a set of rules, explicitly stating what is allowed to pass from one side of the firewall to the other. Additionally, most firewalls work with an implicit deny principle. Firewalls can be discovered by traceroute, port-scanning tools, and a variety of other methods.
-Firewalls are packet-filtering or stateful devices. Packet-filtering firewalls look at the headers of packets coming through a port and decide whether to allow them based on the ACLs configured. Stateful firewalls have the means to track the entire status of a connection.
 
-ACK tunneling and HTTP tunneling are examples of firewall evasion techniques, although stateful firewalls can help prevent ACK tunneling. Firewalking is the process of examining each port on the firewall to discover potential attack vectors. The best method of firewall evasion is to use a compromised machine on the inside to initiate all communication.
+Firewalls:
+ * implicit deny principle. 
+ * Firewalls can be discovered by traceroute, port-scanning tools, and a variety of other methods.
+* Firewalls are packet-filtering or stateful devices. 
+    - Packet-filtering firewalls look at the headers of packets coming through a port and decide whether to allow them based on the ACLs configured.
+    - Stateful firewalls have the means to track the entire status of a connection.
 
+firewall evasion:
+* ACK tunneling (stateful firewalls can help prevent ACK tunneling)
+    - It allows to tunnel a backdoor appl with TCP packets with the ACK bit set
+    - Tools such as AckCmd can be used to implement ACK tunneling
+* HTTP tunneling 
+The best method of firewall evasion is to use a compromised machine on the inside to initiate all communication.
+Firewalking is the process of examining each port on the firewall to discover potential attack vectors. 
 
 Chapter 5
 
