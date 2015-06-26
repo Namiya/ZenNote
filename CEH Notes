@@ -337,73 +337,154 @@ ACK tunneling and HTTP tunneling are examples of firewall evasion techniques, al
 
 
 Chapter 5
-System attacks fall in the gaining access ethical hacking phase. The full methodology includes reconnaissance, scanning, gaining access, maintaining access, and clearing tracks. Gaining access and maintaining access can be broken down further into crack- ing passwords, escalating privileges, and executing applications. Hiding files and clear- ing logs are part of the covering tracks step. Before starting a system attack, ensure all footprinting, scanning, and enumeration efforts have been completed.
-After you’ve cracked a password, according to the methodology, you move up to escalating privileges. After privilege escalation, you leave the gaining access phase and move into maintaining access. Here the objective is to set up some things to ensure you can come back to this target and play around later. The idea is to execute a few applica- tions that provide long-term access. The covering tracks phase is exactly what it sounds like: You’ve busted in, gotten control, and set up a way back in for later access, but now it’s time to clean up the mess so the owner doesn’t notice anything amiss. Cleaning up and wiping down simply means you take care of log files on the machine and do your best to hide or obscure the applications you leave behind.
-Windows Security architecture questions include “Where are passwords stored on the system?” and “How does Windows authenticate users?” The passwords themselves aren’t stored anywhere on the machine. Microsoft Windows stores authentication cre- dentials in something called the Security Accounts Manager (SAM) file, located in the C:\windows\system32\config file. The hash value of passwords is stored in the SAM file, and a hash is a one-way mathematical algorithm that produces a unique output for a given input. Since it’s one way (in other words, you cannot simply reverse the hash
-value to the input it came from), storing the hash—and sending the hash across the wire for authentication—is a pretty good idea.
-Additional security (introduced in Windows NT 4.0) for the SAM file against offline software cracking can be found with the SYSKEY function. When SYSKEY is enabled, the SAM file is partially encrypted, requiring the addition of a key to decrypt should the file be stolen. SYSKEY uses a 128-bit RC4 key.
-Windows 2000 and Windows NT–type machines use something called LAN Man- ager, and then NT LAN Manager, to hash passwords. LM hashing would first take the password and convert everything to uppercase. Then, if the password was less than 14 characters, it would add blank spaces to get it to 14. Then the new, all-uppercase, 14-character password would be split into two 7-character strings. These strings would be hashed separately, with both hashes then combined for the output. If a password is seven characters or less (or uses only one or two character spaces in the second por- tion), this significantly reduces the amount of time required to crack the rest of it be- cause the LM hash value of seven blank characters will always be the same (AAD3B- 435B51404EE). LM uses DES as a hash algorithm, with a 56-bit key. NTLM uses MD4 as a hash algorithm and outputs a 128-bit value. NTLMv2 uses MD5 for hashing and also outputs 128-bit values.
-Kerberos makes use of both symmetric and asymmetric encryption technologies to securely transmit passwords and keys across a network. The entire process consists of a key distribution center (KDC), an authentication service (AS), a ticket granting service (TGS), and the ticket granting ticket (TGT). In a basic Kerberos exchange, the client first asks the KDC (which holds the AS and TGS) for a ticket, which will be used to authen- ticate throughout the network. This request is in clear text. The server will respond with a secret key, which is hashed by the password copy kept on the server (in Active Direc- tory). This is known as the TGT. If the client can decrypt the message (and it should since it knows the password), the TGT is sent back to the server requesting a TGS service ticket. The server responds with the service ticket, and the client is allowed to log on and access network resources.
-The Windows registry is a collection of all the settings and configurations that make the system run. Hierarchical in nature, it stores settings for low-level operating system components, applications running on the machine, drivers, the SAM file, and the user interface. Two basic elements make up a registry setting: keys and values. A key can be thought of as a location pointer, much like a folder in the regular file structure, and the value of that key defines the setting. Keys are arranged in a hierarchy, with root keys at the top, leading downward to more specific settings. The root-level keys in the registry are HKEY_LOCAL_MACHINE (HKLM), HKEY_CLASSES_ROOT (HKCR), HKEY_CUR- RENT_USER (HKCU), HKEY_USERS (HKU), and HKEY_CURRENT_CONFIG (HKCC).
+
+System attacks includes 
+* reconnaissance
+* scanning
+* gaining access
+* maintaining access
+* and clearing tracks. 
+
+Gaining access and maintaining access can be broken down further into cracking passwords, escalating privileges, and executing applications.
+Hiding files and clear- ing logs are part of the covering tracks step. Before starting a system attack, ensure all footprinting, scanning, and enumeration efforts have been completed.
+
+Windows Security:
+Security Accounts Manager (SAM) located in the C:\windows\system32\config file. The hash value of passwords is stored in the SAM file.
+Introduced in Windows NT 4.0 for the SAM file against offline software cracking can be found with the SYSKEY function. When SYSKEY is enabled, the SAM file is partially encrypted, requiring the addition of a key to decrypt should the file be stolen. SYSKEY uses a 128-bit RC4 key.
+Windows 2000 and Windows NT–type machines use something called LAN Manager, and then NT LAN Manager, to hash passwords. 
+LM hashing
+  * take the password and convert everything to uppercase. 
+  * the all-uppercase, 14-character password (padded) would be split into two 7-character strings. 
+  * These strings would be hashed separatel. The LM hash value of seven blank characters will always be the same (AAD3B- 435B51404EE). 
+   *LM uses DES as a hash algorithm, with a 56-bit key. 
+NTLM uses MD4 as a hash algorithm and outputs a 128-bit value. 
+NTLMv2 uses MD5 for hashing and also outputs 128-bit values.
+
+Kerberos makes use of both symmetric and asymmetric encryption:
+* key distribution center (KDC)
+ * an authentication service (AS)
+ * ticket granting service (TGS)
+ * ticket granting ticket (TGT). 
+In a basic Kerberos exchange, the client first asks the KDC (which holds the AS and TGS) for a ticket, which will be used to authen- ticate throughout the network. This request is in clear text. The server will respond with a secret key, which is hashed by the password copy kept on the server (in Active Direc- tory). This is known as the TGT. If the client can decrypt the message (and it should since it knows the password), the TGT is sent back to the server requesting a TGS service ticket. The server responds with the service ticket, and the client is allowed to log on and access network resources.
+
+The root-level keys in the registry are HKEY_LOCAL_MACHINE (HKLM), HKEY_CLASSES_ROOT (HKCR), HKEY_CUR- RENT_USER (HKCU), HKEY_USERS (HKU), and HKEY_CURRENT_CONFIG (HKCC).
 
 Values can be a character string (REG_SZ), an “expandable” string value (REG_EX- PAND_SZ), binary (REG_BINARY), or a host of other goodies. Remaining entries of note include the DWORD value (REG_DWORD—a 32-bit unsigned integer), the link value (REG_LINK—a symbolic link to another key), and the multisize value (REG_ MULTI_SZ—a multistring value). Some of the keys of great importance to you in particular (for your exam and your job) include
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce, HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices, HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce, and HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run.
-Linux is a powerful OS that can be used for several purposes. The Linux file system starts with a root directory just as Windows does. The Windows root is usually C:\, and the Linux root is just a slash (/). Security on files and folders is managed through your user account, your user’s group membership, and three security options that can be as- signed to each for any resource: read, write, and execute. These permissions are assigned via the chmod command and the use of the binary equivalent for each rwx group: Read is equivalent to 4, write is 2, and execute is 1.
-All users and groups are organized via a unique user ID (UID) and group ID (GUID). Information for both can be found within the /etc/passwd file. Passwords in Linux can be stored in the passwd file or in the shadow file, the latter of which encrypts the stored passwords. The passwords contained within are actually hashes that, usually, have a salt assigned. John the Ripper will run through brute-force hashing and tackle the salts.
-You need three commands to compile any program in Linux: ./configure, make, and make install. Compiling raw programs to a recognizable form for the OS can be done using the GNU Compiler Collection (GCC). GCC can compile and execute from sever- al languages, such as C, C++, and Fortran. Linux kernel modules (LKMs) were invented early on to provide some modularity to the operating system. LKMs allow functionality without forcing the entire OS to be rewritten and reinstalled. The command to load an LKM is as follows:
-modprobe LKM_name
-Hardening a Linux machine includes physical location, file, and user account security steps. Nessus, Retina, Core Impact, and SAINT are all examples of vulnerability scanners to assist in pointing out potential problems with a Linux install.
-Authentication to any system can rely on three things: something you are (biometrics, such as fingerprints), something you have (a token or card of some sort), and something you know (a password). A password’s strength is determined by two major functions: length and complexity. Password types are defined by what’s in them and can be made up of letters, numbers, special characters, or some combination of all three.
-In general, passwords must not contain any part of the user’s name, must have a minimum of eight characters, and must contain characters from at least three of the four major components of complexity (special symbols, uppercase letters, lowercase letters, and numbers).
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce
+and HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run.
 
-There are four types of password attacks. A passive online attack involves sniffing a wire in the hopes of intercepting a password in clear text or attempting a replay or man- in-the-middle attack. Sidejacking is another attack that’s similar and is used against encrypted passwords and SSL by stealing cookies exchanged between two systems and replaying them. Cain, Ettercap, ScoopLM, and KerbCrack (KerbSniff) are examples of tools that accomplish this.
+Linux:
+* equivalent for each rwx group: Read is equivalent to 4, write is 2, and execute is 1.
+* unique user ID (UID) and group ID (GUID)
+* /etc/passwd & /etc/shadow. passwords contained within are actually hashes that, usually, have a salt assigned. 
+* John the Ripper will run through brute-force hashing and tackle the salts.
 
-193
+Three commands to compile any program in Linux: ./configure, make, and make install. 
+GNU Compiler Collection (GCC): compile and execute C, C++, and Fortran. 
+Linux kernel modules (LKMs) were invented early on to provide some modularity to the operating system. LKMs allow functionality without forcing the entire OS to be rewritten and reinstalled. The command to load an LKM is as follows:
+* modprobe LKM_name
 
-An active online attack occurs when the attacker begins simply guessing passwords. Active online attacks take much longer than passive attacks and are also much easier to detect. These attacks try to take advantage of bad passwords and security practices by individuals on a network.
-Offline attacks occur when the hacker steals a copy of the password file and works the cracking efforts on a separate system. These attacks usually require some form of physical access to the machine, where the attacker pulls the password file to removable media. Password cracking offline can be done in one of three major ways: dictionary attacks, hybrid attacks, and brute-force attacks.
-A dictionary attack is the easiest and uses a list of passwords in a text file, which is then hashed by the same algorithm/process the original password was put through. This can also be sped up using rainbow tables. A hybrid attack is a step above the dictionary attack. In a hybrid attack, the cracking tool takes words from a list and substitutes numbers and symbols for alphabetic characters. Hybrid attacks may also append numbers and symbols to the ends of dictionary file passwords. Brute-force attacks attempt every con- ceivable combination of letters, numbers, and special characters, comparing them against the hash to determine a match. This process is very time-consuming, chewing up a lot of computation cycles and making this the longest of the three methods. Cain, KerbCrack, Legion, and John the Ripper are examples of brute-force password-cracking tools.
-Keylogging is the process of using a hardware device or software application to cap- ture the keystrokes a user types. With this method, keystrokes are captured as they are typed, regardless of what they’re being typed for. Keyloggers can be hardware devices— usually small devices connected between the keyboard cable and the computer—or software applications installed and running in the background.
-Nonelectronic attacks involve social engineering attempts, which can take on many different forms. This is perhaps the most effective and easiest method available. Produc- tive methods include shoulder surfing and phishing.
-Escalation of privileges is the bridge between gaining access and maintaining access and usually falls into four main options for obtaining administrator (root) privileges on a machine. The first is to crack the password of an administrator or root account. The second is to take advantage of a vulnerability found in the OS, or in an application, that will allow you access as a privileged user. The third method is to use a tool that, ideally, provides you with the results you’re looking for. The last method involves more social engineering, such as putting executable code in an e-mail and asking the user to click it. This is the easiest method available and probably will wind up being your most effective over time.
-There are two types of privilege escalation. Vertical privilege escalation occurs when a lower-level user executes code at a higher privilege level than they should have access to. Horizontal privilege escalation isn’t really escalation at all but rather simply executing code at the same user level but from a location that should be protected from access.
+Hardening a Linux machine includes physical location, file, and user account security steps. 
+Vulnerability scanners: Nessus, Retina, Core Impact, and SAINT
 
-One really great way to hide files on Windows machines is through the use of an alternate data stream (ADS) in the form of New Technology File System (NTFS) file streaming. ADS is a feature of the Windows-native NTFS to ensure compatibility with Apple file systems (called HFS), not to mention the ability for loads of back-end 
-eatures built into the OS and applications. NTFS file steaming allows you to hide virtu- ally any file behind any other file, rendering it invisible to directory searches. Protection against this includes LNS and Sfind, both created specifically to hunt down ADS. Win- dows Vista introduced a directory command (dir /r) that will display all file streams in the directory. Lastly, copying files to and from a FAT partition blows away any residual file streams in the directory.
+Authentication to any system can rely on three things: 
+* something you are (biometrics, such as fingerprints), 
+* something you have (a token or card of some sort),
+* something you know (a password). 
 
-Another file-hiding technique is steganography. Steganography hides files in plain sight, buried within an image of another file. Tools for hiding files of all sorts in regular image or other files are ImageHide, Snow, Mp3Stego, Blindside, S-tools, wbStego, and Stealth. Another term used in regard to steganography is semagram, and there are two types. A visual semagram uses an everyday object to convey a message. Examples can include doodling, or the way items are laid out on a desk. A text semagram obscures a message in text by using font, size, type, or spacing.
+four types of password attacks:
+1. passive online attack: sniffing, man- in-the-middle attack.
+2. Sidejacking is another attack that’s similar and is used against encrypted passwords and SSL by stealing cookies exchanged between two systems and replaying them. 
+    * Cain, Ettercap, ScoopLM, and KerbCrack (KerbSniff) are examples of tools that accomplish this.
+3. Active online attack occurs when the attacker begins simply guessing passwords. Active online attacks take much longer than passive attacks and are also much easier to detect. These attacks try to take advantage of bad passwords and security practices by individuals on a network.
+4. Offline attacks occur when the hacker steals a copy of the password file and works the cracking efforts on a separate system. These attacks usually require some form of physical access to the machine, where the attacker pulls the password file to removable media. Password cracking offline can be done in one of three major ways: 
+    * dictionary attacks, can also be sped up using rainbow tables
+    * hybrid attacks, and 
+    * brute-force attacks: Cain, KerbCrack, Legion, and John the Ripper
+  
+
+Nonelectronic attacks involve social engineering attempts, include shoulder surfing and phishing.
+
+Escalation of privileges is the bridge between gaining access and maintaining access and usually falls into four main options:
+* crack the password of an administrator or root account. 
+* take advantage of a vulnerability found in the OS, or in an application 
+* The third method is to use a tool
+* social engineering
+There are two types of privilege escalation:
+* Vertical privilege escalation occurs when a lower-level user executes code at a higher privilege level than they should have access to. 
+* Horizontal privilege escalation isn’t really escalation at all but rather simply executing code at the same user level but from a location that should be protected from access.
+
+Alternate data stream (ADS) in the form of New Technology File System (NTFS) file streaming. 
+
+Steganography hides files in plain sight, buried within an image of another file. Tools for hiding files of all sorts in regular image or other files are ImageHide, Snow, Mp3Stego, Blindside, S-tools, wbStego, and Stealth. 
+Another term used in regard to steganography is semagram, and there are two types. A visual semagram uses an everyday object to convey a message. Examples can include doodling, or the way items are laid out on a desk. A text semagram obscures a message in text by using font, size, type, or spacing.
 
 
 Chapter 6
-The two major web server providers to know for CEH are Apache and Internet Infor- mation Services (IIS) servers. Apache is an open source, powerful, and fast web server that typically runs on a Unix or Linux platform, although you can load and use it on a wide variety of operating systems. Apache is built modularly, with a core to hold all the “magic” and modules to perform a wide variety of functions. Additionally, because of its open source nature, there is a huge library of publicly available add-ons to support all sorts of function and service. Apache configuration is almost always done as part of a module within special files (http.conf, for instance, can be used to set server status), and the modules are appropriately named (mod_negotiation, for instance).
-IIS servers are easy-to-manage, Windows-based options for the web provider. Almost everything questioned on IIS configuration is going to come down to privileges, and IIS itself will spawn all shells as LOCAL_SYSTEM.
-Whether it’s an Apache or an IIS server, misconfiguration of the settings is the most common vulnerability that will be exploited. Properly configuring (restricting?) remote administration, eliminating unnecessary services, changing any default passwords or accounts, and error reporting are settings of concern.
 
-HTTP was designed to pull and display HTML files inside a browser. These HTML files consist of a bunch of tags that tell the browser how to display the data inside. This sim- plicity makes HTML easy to work with but also has its own issues. HTML entities were created as a way of telling the browser to display those characters it would otherwise look at as a tag or part of the programming itself. Examples include &nbsp;, &lt;, and &gt;.
+Apache 
+    * open source, modular web server that typically runs on a Unix or Linux platform.
+    * http.conf,can be used to set server status
+    
+IIS servers 
+    * easy-to-manage, Windows-based options for the web provider. Almost everything questioned on IIS configuration is going to come down to privileges, and IIS itself will spawn all shells as LOCAL_SYSTEM.
 
-HTTP request are pretty straightforward and easy to understand. The most common are HTTP HEAD, GET, and POST. An HTTP HEAD requests headers and metadata. It works exactly like an HTTP GET, except it doesn’t return any body information to display within your browser. An HTTP GET basically requests data from a resource. However, HTTP GET can be used to send data as well, and when sending data, the GET method adds the data to the URL.
-A POST, on the other hand, is a much better method of submitting data to a resource for processing. It can also be used to elicit a response, but its primary purpose is to provide data for the server to work with. POST is generally considered safer than GET because it is not stored in browser history or in the server logs, and it doesn’t display returned data in the URL.
-EC-Council defines six different stages in web server attack methodology: informa- tion gathering, footprinting, mirroring websites, vulnerability scanning, session hijack- ing, and password cracking. You probably won’t be tested on the order, but you should be aware of it.
-A vulnerability scanner will practically give you everything you need to gain access. Nessus is probably the most common vulnerability scanner available, but it’s certainly not the only option. Nikto is a vulnerability scanner more suited specifically for web servers.
-Directory traversal is one form of attack that’s common and successful. In this attack, the hacker attempts to access restricted directories and execute commands out- side intended web server directories. Also known as the dot-dot-slash attack, directory climbing, and backtracking, this attack basically sends HTTP requests asking the server to drop back to the root directory and give access to other folders. This dot-dot-slash attack is also known as a variant of Unicode or unvalidated input attack. Unicode is a standard for ensuring consistent encoding and text representation and can be accepted by servers for malicious purposes. Unvalidated input means the server has not been configured to accept only specific input during an HTTP GET, so an attacker can craft the request to ask for command prompts, to try administrative access passwords, and so on.
-Another attack that sometimes involves a lot of trial and error is parameter tamper- ing (a.k.a. URL tampering). In this attack, the hacker simply manipulates parameters within the URL string in hopes of modifying data, such as permissions and elevation of privileges, prices and quantities of goods, and credentials.
-Another version of parameter tampering (trust me) involves manipulating the hid- den field on the source. This involves copying the code to the local system, manipulating the hidden field, and then opening the page again to use the newly configured tag.
-Web applications are most often hacked because of inherent weaknesses built into the program at inception. Developers might overlook known vulnerabilities, forget to patch security flaws, or leave default passwords and accounts open for exploitation. In analyzing a web application to attack, EC-Council identifies four key efforts: identify entry points, identify server-side function, identify server-side technologies, and map the attack surface.
-Identifying entry points includes examining cookies, headers, POST data, and encoding or encryption measures. Also, don’t ignore the obvious—the URL can tell you a lot (input parameters and such are often displayed there). Several tools can help in identifying your entry points including WebScarab, HttPrint, and Burp Suite. Identifying
+Misconfiguration of the settings is the most common vulnerability that will be exploited. Properly configuring (restricting?) remote administration, eliminating unnecessary services, changing any default passwords or accounts, and error reporting are settings of concern.
 
-function and technology on the server side is really footprinting and fingerprinting combined. Mapping the attack surface is simply EC-Council’s way of saying you should know what information is best suited to set up a specific attack vector.
-One successful web application attack deals with injecting malicious commands into the input string. The objective is much like that of the URL-tampering methods discussed earlier in this chapter: to pass exploit code to the server through poorly designed input validation in the application. This can occur using a variety of methods, including file injection (where the attacker injects a pointer in the web form input to an exploit hosted on a remote site), command injection (where the attacker injects commands into the form fields instead of the expected test entry), and shell injection (where the attacker attempts to gain shell access using Java or other functions).
-A buffer overflow attack, also known as smashing the stack, is an attempt to write more data into an application’s prebuilt buffer area in order to overwrite adjacent memory, execute code, or crash a system (application). The buffer overflow attack categories are stack, heap, and NOP sled.
-Sometimes developers use canaries or canary words in buffer overflow detection. In buffer overflow and programming parlance, canary words are known values placed between the buffer and control data. If a buffer overflow occurs, the canary word will be altered first, triggering a halt to the system. Tools such as StackGuard use this for stack protection.
-Cross-site scripting (XSS) is an attack revolving around website design and dynam- ic content. Usually when a web form pops up, the user inputs something, and then some script dynamically changes the appearance or behavior of the website based on what has been entered. XSS occurs when the bad guys take advantage of that scripting (Java, for instance) and have it perform something other than the intended response. A URL such as the following is an indicator of an XSS attempt: http://IPADDRESS/";!- -"<XSS>=&{()}.
-A cookie is a small, text-based file that is stored on your system for use by the web server the next time you log in. It can contain all sorts of information, including authentication details, site preferences, shopping cart contents, and session details. Cookies are sent in the header of an HTTP response from a web server and may or may not have an expiration date. Passwords can sometimes also be stored in cookies, and although it’s a horrible practice, it’s still fairly prevalent.
-LDAP injection is an attack that exploits nonvalidated web input that passes LDAP queries. In other words, if a web application takes whatever is entered into the form field and passes it directly as an LDAP query, an attacker can inject code to do all sorts of stuff. SOAP injection is another related attack. Simple Object Access Protocol (SOAP) is designed to exchange structured information in web services in computer networks and uses XML to format information.
+HTTP HEAD requests headers and metadata. It works exactly like an HTTP GET, except it doesn’t return any body information to display within your browser. 
+HTTP GET basically requests data from a resource. However, HTTP GET can be used to send data as well, and when sending data, the GET method adds the data to the URL.
+A POST is a much better method of submitting data to a resource for processing. It can also be used to elicit a response, but its primary purpose is to provide data for the server to work with. POST is generally considered safer than GET because it is not stored in browser history or in the server logs, and it doesn’t display returned data in the URL.
 
-SQL injection is, by far, the most common and most successful injection attack technique in the world. Structured Query Language (SQL) is a computer “language” designed for managing data in a relational database system. The relational database is simply a collection of tables (consisting of rows, which hold individual fields con- taining data) tied together using some common field (key) that you can update and query. Each table has a name given to it that is referenced when you perform queries or updates. SQL comes into play when you are adding, deleting, moving, updating, or viewing the data in those tables and fields.
-SQL queries generally begin with the SELECT command. SELECT is used to choose the data you’d like to perform an action on. In addition to SELECT, there are several additional options and commands of great interest to a hacker. For example, DROP TABLE tablename will delete the table tablename from the database. INSERT and UPDATE are also easy to understand.
-SQL injection occurs when the attacker injects SQL queries directly into the input form. Properly constructed, the SQL command bypasses the intent of the front end and executes directly on the SQL database. To find out whether a site is susceptible to SQL injection, check your target for a web login page, and instead of entering what’s asked for on the web form, simply try a single quote (') and see what kind of error message, if any, you receive. If that doesn’t work, try entering anything' or 1=1- and see what you get. The attack names and definitions for SQL are union query, tautology, blind SQL injection, and error-based SQL injection.
+six different stages in web server attack methodology: 
+1. information gathering, 
+2. footprinting
+3. mirroring websites
+4. vulnerability scanning
+5. session hijacking
+6. password cracking. 
 
-sqlmap, Havij, and sqlninja are all automated scanners designed to look specifically for injection vulnerabilities. SQLBrute is a tool that allows you to blast through pre- defined SQL injection queries against a target. Others include, but are not limited to, Pangolin, SQLExec, Absinthe, and BobCat.
+Nessus is probably the most common vulnerability scanner available, but it’s certainly not the only option. 
+Nikto is a vulnerability scanner more suited specifically for web servers.
+
+Directory traversal is one form of attack that’s common and successful. Also known as the dot-dot-slash attack, directory climbing, and backtracking, 
+    * this attack basically sends HTTP requests asking the server to drop back to the root directory and give access to other folders. 
+    * This dot-dot-slash attack is also known as a variant of Unicode or unvalidated input attack. Unicode is a standard for ensuring consistent encoding and text representation and can be accepted by servers for malicious purposes. Unvalidated input means the server has not been configured to accept only specific input during an HTTP GET, so an attacker can craft the request to ask for command prompts, to try administrative access passwords, and so on.
+Parameter tampering (a.k.a. URL tampering). In this attack, the hacker simply manipulates parameters within the URL string in hopes of modifying data.
+Another version of parameter tampering involves manipulating the hidden field on the source. This involves copying the code to the local system, manipulating the hidden field, and then opening the page again to use the newly configured tag.
+
+In analyzing a web application to attack: 
+    * identify entry points: examining cookies, headers, POST data, and encoding or encryption measures, also URL. Tools: WebScarab, HttPrint, and Burp Suite.
+    * identify server-side function: footprinting and fingerprinting combined
+    * identify server-side technologies: footprinting and fingerprinting combined
+    * map the attack surface: set up a specific attack vector
+
+
+web application attack deals with injecting malicious commands into the input string, pass exploit code to the server through poorly designed input validation in the application, 
+    - including file injection where the attacker injects a pointer in the web form input to an exploit hosted on a remote site)
+    - command injection, where the attacker injects commands into the form fields instead of the expected test entry
+    - shell injection, where the attacker attempts to gain shell access using Java or other functions
+
+A buffer overflow attack, also known as smashing the stack. The buffer overflow attack categories are stack, heap, and NOP sled.
+Sometimes developers use canaries or canary words in buffer overflow detection. Tools such as StackGuard use this for stack protection.
+
+Cross-site scripting (XSS) is an attack revolving around website design and dynamic content. A URL such as the following is an indicator of an XSS attempt: http://IPADDRESS/";!- -"<XSS>=&{()}.
+
+A cookie includes authentication details, site preferences, shopping cart contents, and session details. Cookies are sent in the header of an HTTP response from a web server and may or may not have an expiration date. Passwords can sometimes also be stored in cookies.
+
+LDAP injection is an attack that exploits nonvalidated web input that passes LDAP queries.
+SOAP injection is another related attack. Simple Object Access Protocol (SOAP) is designed to exchange structured information in web services in computer networks and uses XML to format information.
+
+SQL injection is the most common and most successful injection attack technique in the world. Structured Query Language (SQL) is a computer “language” designed for managing data in a relational database system.
+Attacks:
+        * union query: http://www.example.com/product.php?id=10 UNION SELECT 1,null,null--
+        * tautology (" OR 1=1")
+        * blind SQL injection
+        * error-based SQL injection.
+
+sqlmap, Havij, and sqlninja are all automated scanners designed to look specifically for injection vulnerabilities. 
+SQLBrute is a tool that allows you to blast through predefined SQL injection queries against a target. Others include, but are not limited to, Pangolin, SQLExec, Absinthe, and BobCat.
  
 
 Chapter 7
