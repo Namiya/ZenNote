@@ -231,6 +231,22 @@ Class A - Interactive Controls: Authentication, Identification, resilience, Subj
 Class B - Process Controls: Nonrepudiation, Confidentiality, Privacy, Integrity, Alarm
 
 Port Security authorizes traffic send form specified Media Access Control (MAC) addresses to enter a port. 
+----------------------------------------------------------------
+Control Objectives for Information and Related Technology (COBIT) 
+Information Systems Audit and Control Association (ISACA)
+Certified in Risk and Information Systems Control (CRISC) 
+Sarbanes–Oxley, Sarbox (SOX)
+Open Source Security Testing Methodology Manual (OSSTMM)
+Federal Information Processing Standards (FIPS) 
+Web Services Security (WS-Security, WSS) is an extension to SOAP to apply security to Web services. It is a member of the Web service specifications and was published by OASIS.
+WS-SecureConversation is a Web Services specification, created by IBM and others, that works in conjunction with WS-Security, WS-Trust and WS-Policy to allow the creation and sharing of security contexts. Extending the use cases of WS-Security, the purpose of WS-SecureConversation is to establish security contexts for multiple SOAP message exchanges, reducing the overhead of key establishment
+
+COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
+
+CRISC is a certification for information technology professionals with experience in managing IT risks, awarded by ISACA. 
+
+FIPS are U.S. government computer security standards that specify requirements for cryptography modules. 
+
 ---------------------------------------------------------------
 
 Chapter 2
@@ -770,19 +786,6 @@ There are three main phases to a pen test:
         - An analysis of each finding and the recommended mitigation steps (if available).
         - Log files and other evidence from your toolset.
         
-----------------------------------------------------------------
-Control Objectives for Information and Related Technology (COBIT) 
-Information Systems Audit and Control Association (ISACA)
-Certified in Risk and Information Systems Control (CRISC) 
-Sarbanes–Oxley, Sarbox (SOX)
-Open Source Security Testing Methodology Manual (OSSTMM)
-Federal Information Processing Standards (FIPS) 
-
-COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
-
-CRISC is a certification for information technology professionals with experience in managing IT risks, awarded by ISACA. 
-
-FIPS are U.S. government computer security standards that specify requirements for cryptography modules. 
 ----------------------------------------------------------------
 ARP spoofing, ARP cache poisoning, or ARP poison routing, is a technique by which an attacker sends (spoofed) Address Resolution Protocol (ARP) messages onto a local area network. Generally, the aim is to associate the attacker's MAC address with the IP address of another host, such as thedefault gateway, causing any traffic meant for that IP address to be sent to the attacker instead.
 ARP spoofing may allow an attacker to intercept data frames on a network, modify the traffic, or stop all traffic. Often the attack is used as an opening for other attacks, such as denial of service, man in the middle, orsession hijacking attacks.[1]
