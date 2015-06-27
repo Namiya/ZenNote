@@ -243,6 +243,7 @@ Certified in Risk and Information Systems Control (CRISC)
 Sarbanes–Oxley, Sarbox (SOX)
 Open Source Security Testing Methodology Manual (OSSTMM)
 Federal Information Processing Standards (FIPS) 
+The Evaluation Assurance Level (EAL1 through EAL7) of an IT product or system is a numerical grade assigned following the completion of a Common Criteria security evaluation,
 Web Services Security (WS-Security, WSS) is an extension to SOAP to apply security to Web services. It is a member of the Web service specifications and was published by OASIS.
 WS-SecureConversation is a Web Services specification, created by IBM and others, that works in conjunction with WS-Security, WS-Trust and WS-Policy to allow the creation and sharing of security contexts. Extending the use cases of WS-Security, the purpose of WS-SecureConversation is to establish security contexts for multiple SOAP message exchanges, reducing the overhead of key establishment
 
