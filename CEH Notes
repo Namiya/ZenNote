@@ -189,6 +189,11 @@ stateful firewall allow traffic into a network only if a corresponding request w
 ISO 27002 is a security standard that recommends security control based on industry best practices.
 ISO 27001 focuses on security governance.
 PCI DSS is a security evaluation standard that was PCI SSC (Security Standards Council). PCI DSS focuses on protection customer data by using secure networks, manage vulnerabilities, implement strong methods of access control, implementing network security tests and monitoring, and maintaining a security policy.
+PCI DSS Requriment 1: firewall
+PCI DSS Requriment 3,4: encryption
+PCI DSS Requriment 5: Anti-virus
+PCI DSS Requriment 10: auditing
+PCI DSS Requriment 11: vulnerabiltiy scaner 
 
 A man trap is a security measure that can be used to  limit a company’s vulnerability to tailgating. 
 
