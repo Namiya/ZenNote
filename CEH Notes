@@ -238,20 +238,35 @@ Class B - Process Controls: Nonrepudiation, Confidentiality, Privacy, Integrity,
 Port Security authorizes traffic send form specified Media Access Control (MAC) addresses to enter a port. 
 ----------------------------------------------------------------
 Control Objectives for Information and Related Technology (COBIT) 
+COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
+
 Information Systems Audit and Control Association (ISACA)
 Certified in Risk and Information Systems Control (CRISC) 
+CRISC is a certification for information technology professionals with experience in managing IT risks, awarded by ISACA. 
+
 Sarbanes–Oxley, Sarbox (SOX)
+SOX is a law that was created to require companies to properly disclose financial information as well as submite to independent audits.
+
 Open Source Security Testing Methodology Manual (OSSTMM)
+
 Federal Information Processing Standards (FIPS) 
+FIPS are U.S. government computer security standards that specify requirements for cryptography modules. 
+
 The Evaluation Assurance Level (EAL1 through EAL7) of an IT product or system is a numerical grade assigned following the completion of a Common Criteria security evaluation,
 Web Services Security (WS-Security, WSS) is an extension to SOAP to apply security to Web services. It is a member of the Web service specifications and was published by OASIS.
 WS-SecureConversation is a Web Services specification, created by IBM and others, that works in conjunction with WS-Security, WS-Trust and WS-Policy to allow the creation and sharing of security contexts. Extending the use cases of WS-Security, the purpose of WS-SecureConversation is to establish security contexts for multiple SOAP message exchanges, reducing the overhead of key establishment
 
-COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
 
-CRISC is a certification for information technology professionals with experience in managing IT risks, awarded by ISACA. 
 
-FIPS are U.S. government computer security standards that specify requirements for cryptography modules. 
+
+Trusted Computer System Evaluation Criteria (TCSEC)
+A. verified Protection
+B. Mandatory Protection
+C. Discretionary Protection
+D. Minimal Protection
+Trusted Network Interpretation Environment Guideline (TNIEG)
+
+Gramm-Leach-Billey Act (GLBA) is a law that protects the confidentiality and integrity of personal information that is collected by financial institutions. 
 
 ---------------------------------------------------------------
 
@@ -724,7 +739,7 @@ Bluetooth attacks
 * Bluesniffing is exactly what it sounds like
 * Bluescarfing is the actual theft of data from a mobile device.
 
-Some of the more common Bluetooth tools available for hacking include BlueScanner (from SourceForge), BT Browser, Bluesniff, and btCrawler. After identifying nearby devices, Super Bluetooth Hack is an all-in-one software package that allows you to do almost anything you want to a device you’re lucky enough to connect to. Other attack options include bluebugger and Bluediving (a full penetration suite for Bluetooth).
+Some of the more common Bluetooth tools available for hacking include BlueScanner (from SourceForge), BT Browser, Bluesniff, and btCrawler. After identifying nearby devices, Super Bluetooth Hack is an all-in-one software package that allows you to do almost anything you want to a device you’re lucky enough to connect to. Other attack options include bluebugger(tool: blooover) and Bluediving (a full penetration suite for Bluetooth).
 
 Chapter 8
 
