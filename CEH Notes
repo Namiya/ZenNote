@@ -1,7 +1,4 @@
 
-
-
-
 NMAP:
 -A, to enable OS and version detection, script scanning, and traceroute
 -sV: Probe open ports to determine service/version info
@@ -108,6 +105,8 @@ MISC:
   --unprivileged: Assume the user lacks raw socket privileges
   -V: Print version number
   -h: Print this help summary page.
+  -n: do not lookup DSN 
+  -P0: do not ping first
 
 MAC Flood
 Content Address Memory (CAM) is overflood
@@ -236,11 +235,40 @@ Class A - Interactive Controls: Authentication, Identification, resilience, Subj
 Class B - Process Controls: Nonrepudiation, Confidentiality, Privacy, Integrity, Alarm
 
 Port Security authorizes traffic send form specified Media Access Control (MAC) addresses to enter a port. 
+
+Spear phishing is a targeted email scam with the sole purpose of obtaining unauthorized access to sensitive data. Unlike phishing scams, which cast broad, scatter-shot attacks, spear phishing hones in on a specific group or organization. The intent is to steal intellectual property, financial data, trade or military secrets and other confidential data.
+
+ARIN is for north and South America .com domain registration 
+
+port 500 is for IKE( internet key exchange)
+
+bit flipping is one form of integrity attack, manipulate the cipher text to generate predictable outcome in plaint text.
+
+Pretty Park and Bugbear:
+Common: use email spread
+Uncommon:
+PP: connect to an IRC server to send password and other information
+Bugbear: use network share to spread, terminate anti-virus and act as a backdoor
+
+NWPCrack is used to crack single accounts on Netware servers
+
+bastion host is a gateway between an inside network and an outside network.
+
+John the Ripper cannot cracking Cisco vpn passwords and recording and extracting voip conversations
+
+Message integrity check (MIC) is a feature in WPA to agains MITM
+
 ----------------------------------------------------------------
 Control Objectives for Information and Related Technology (COBIT) 
 COBIT is a framework created by ISACA for information technology (IT) management and IT governance. It is a supporting toolset that allows managers to bridge the gap between control requirements, technical issues and business risks.
+COBIT categorizes control objects into domains:
+  * Planning and organization
+  * Acquisition and implementation 
+  * Delivery and support
+  * Monitoring and evaluation
 
 Information Systems Audit and Control Association (ISACA)
+
 Certified in Risk and Information Systems Control (CRISC) 
 CRISC is a certification for information technology professionals with experience in managing IT risks, awarded by ISACA. 
 
@@ -252,12 +280,15 @@ Open Source Security Testing Methodology Manual (OSSTMM)
 Federal Information Processing Standards (FIPS) 
 FIPS are U.S. government computer security standards that specify requirements for cryptography modules. 
 
+Common Criteria
+* Target of Evaluation (ToE): the system or product that is to be tested.
+* Security Target (ST): the documentation that describes the ToE and any security requirement.
+* Protection Profile (PP): a set of security requirements and objects for the type of product to be tested
+* Evaluation Assurance Lever
 The Evaluation Assurance Level (EAL1 through EAL7) of an IT product or system is a numerical grade assigned following the completion of a Common Criteria security evaluation,
+
 Web Services Security (WS-Security, WSS) is an extension to SOAP to apply security to Web services. It is a member of the Web service specifications and was published by OASIS.
 WS-SecureConversation is a Web Services specification, created by IBM and others, that works in conjunction with WS-Security, WS-Trust and WS-Policy to allow the creation and sharing of security contexts. Extending the use cases of WS-Security, the purpose of WS-SecureConversation is to establish security contexts for multiple SOAP message exchanges, reducing the overhead of key establishment
-
-
-
 
 Trusted Computer System Evaluation Criteria (TCSEC)
 A. verified Protection
@@ -268,6 +299,10 @@ Trusted Network Interpretation Environment Guideline (TNIEG)
 
 Gramm-Leach-Billey Act (GLBA) is a law that protects the confidentiality and integrity of personal information that is collected by financial institutions. 
 
+ISO270001 is based British Standard 7799 (second part) and is focus on security governance. Security governance is the process of directing and controlling IT security. 
+ISO270002 is based on 7799 (first part) and defines security objects and provide a list of security controls.
+
+Computer Security Incident Response Team (CSIRT) provide a trusted single point of contact for reporting computer security incidnets.
 ---------------------------------------------------------------
 
 Chapter 2
@@ -385,11 +420,17 @@ Null sessions require TCP ports 135, 137, 139, and 445 to work and have been vir
 Linux systems use a user ID (UID) and a group ID (GID) in much the same way as Windows uses SIDs and RIDs. On a Linux machine, these can be found in the /etc/ passwd file.
 
 telnet <IPAddress> 80 would attempt a connection over port 80.
+
 netcat: 
   * a command-line networking utility that reads and writes data across network connections using TCP/IP. 
   * a tunneling protocol, a scanner, and an advanced hacking tool. 
   * banner grabbing - nc <IPaddress or FQDN> <port number>.
-
+  * -l / -L: configure nc to accept inbound connections on Windows host.
+  *  -p: a TCP port on which nc should listen for inbound connection 
+  * -u: a UDP port 
+  * -t: enable telnet negotiation
+  * -e: specify the program that should be executed when a session is established 
+ 
 SNMP enumeration may also prove useful. SNMP uses a community string as a form of password, with the read-only version of the community string allowing a requester to read virtually anything SNMP can drag out of the device. The read-write version is used to control access for SNMP SET requests, which can actually change settings on a device. The defaults for both of these strings are public (read-only) and private (read-write). Assuming the network administrator left SNMP enabled and/or did not change the default strings, enumerating with SNMP is relatively easy, and tools for accomplishing this are SNMPUtil and IP Network Browser (SolarWinds).
 
 
