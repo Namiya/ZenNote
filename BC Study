@@ -1,0 +1,7 @@
+http://spectrum.ieee.org/computing/networks/the-future-of-the-web-looks-a-lot-like-bitcoin
+Two parts:
+* A universal database that records transactions and grows linearly in chunks called blocks, forming the “blockchain.”
+* a network of peers, called miners, which are the computers (and the people who own them) that actually add the blocks to the blockchain.
+
+
+
