@@ -1,0 +1,3 @@
+# Javap: The javap command disassembles one or more class files
+$ cd to destination folder with foo.class
+$ javap -c foo # be sure not including ".class"
