@@ -1,1 +1,5 @@
 https://www.amazon.com/returns/label/1a075401-4195-4737-9957-66d7b78ed6c3/rmaID/D9LVzjr0RRMA
+
+Computational Statistics in Python http://people.duke.edu/~ccc14/sta-663/
+Quantitative Economics http://quant-econ.net/py/index.html
+Scipy Lecture Notes http://www.scipy-lectures.org/
